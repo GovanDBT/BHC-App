@@ -7,7 +7,7 @@ import Screen from './app/screens/Screen';
 export default function App() {
   return (
     <Screen>
-      <AppText>Hello world!!!</AppText>
+      <AppText>Thembi has a massive.....</AppText>
     </Screen>
   );
 }
