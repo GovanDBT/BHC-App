@@ -6,12 +6,19 @@ import NavigationTheme from './app/navigation/NavigationTheme';
 import AppNavigator from './app/navigation/AppNavigator';
 import Tag from './app/components/Tag';
 import Screen from './app/screens/Screen';
+import Card from './app/components/Card';
 
 export default function App() {
   return (
     <NavigationContainer theme={NavigationTheme}>
       <Screen>
-        <Tag title="Rent" />
+        <Card 
+          image={require("./app/assets/bhc-house01.jpeg")}
+          price="4,500"
+          tagName="Rent"
+          title="BHC Palapye Property"
+          location="Palapye, Tsere Ward, Plot 4453"
+        />
       </Screen>
     </NavigationContainer>
   );
