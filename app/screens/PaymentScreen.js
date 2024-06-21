@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 function PaymentScreen(props) {
     return (
         
-            <Text>Payments</Text>
+            <Text>Payments Screen</Text>
         
     );
 }
