@@ -1,13 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import 'react-native-gesture-handler';
 
-import AppText from './app/components/AppText';
-import Screen from './app/screens/Screen';
+import AuthNavigator from './app/navigation/AuthNavigator';
+import NavigationTheme from './app/navigation/NavigationTheme';
+import AppNavigator from './app/navigation/AppNavigator';
 
 export default function App() {
   return (
-    <Screen>
-      <AppText>Thembi has a massive.....</AppText>
-    </Screen>
+    <NavigationContainer theme={NavigationTheme}>
+      <AppNavigator />
+    </NavigationContainer>
   );
 }
