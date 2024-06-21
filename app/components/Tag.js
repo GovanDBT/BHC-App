@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
     text: {
         color: colors.primary,
         fontWeight: 'bold',
-        textAlign: 'center'
+        textAlign: 'center',
+        textTransform: "capitalize"
     }
 })
 
