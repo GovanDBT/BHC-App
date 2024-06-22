@@ -6,6 +6,7 @@ import colors from '../config/colors';
 import AppText from '../components/AppText';
 import Tag from '../components/Tag';
 import PropertyDetailsTag from '../components/PropertyDetailsTag';
+import AppButton from '../components/AppButton';
 
 const images = [
     require('../assets/house01-sitting-room.jpg'),
@@ -29,10 +30,14 @@ function PropertyDetailsScreen(props) {
                     <AppText style={styles.title}>BHC Palapye Property</AppText>
                     <AppText style={styles.location}>Palapye, Tsere Ward, 4566</AppText>
                 </View>
+                
                 <View style={styles.tags}>
                     <PropertyDetailsTag title="2 Bed" iconName="bed-king-outline" />
                     <PropertyDetailsTag title="1 Bath" iconName="shower" />
                     <PropertyDetailsTag title="50x100" iconName="pencil-ruler" />
+                </View>
+                <View style={styles.sectionContainer}>
+                    <AppButton title='Apply For Property' />
                 </View>
                 <View style={styles.sectionContainer}>
                     <View style={styles.managementContainer}>
@@ -57,7 +62,7 @@ function PropertyDetailsScreen(props) {
                     </View>
                     <View style={styles.listingHeader}>
                         <AppText style={styles.headerText} size={20}>Listings</AppText>
-                        <AppText style={styles.location}>10 Listings</AppText>
+                        <AppText style={styles.location}>17 Listings</AppText>
                     </View>
                 </View>
                 <View style={styles.sectionContainer}>
@@ -156,7 +161,7 @@ const styles = StyleSheet.create({
     
     applicants: {
         borderRadius: 100,
-        borderWidth: 5,
+        borderWidth: 4,
         borderColor: colors.white,
         width: 70,
         height: 70,
@@ -178,6 +183,11 @@ const styles = StyleSheet.create({
     },
     listingHeader: {
         marginLeft: 10
+    },
+    buttons: {
+        display: 'flex',
+        flexDirection: 'row',
+        
     }
 })
 
