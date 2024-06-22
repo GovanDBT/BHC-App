@@ -4,6 +4,7 @@ import { Image, View, StyleSheet } from 'react-native';
 import colors from '../config/colors';
 import AppText from '../components/AppText';
 import Tag from '../components/Tag';
+import PropertyDetailsTag from '../components/PropertyDetailsTag';
 
 function PropertyDetailsScreen(props) {
     return (
@@ -16,6 +17,11 @@ function PropertyDetailsScreen(props) {
                 </View>
                 <AppText style={styles.title}>BHC Palapye Property</AppText>
                 <AppText style={styles.location}>Palapye, Tsere Ward, 4566</AppText>
+            </View>
+            <View style={styles.tags}>
+                <PropertyDetailsTag title="2 Bed" iconName="bed-king-outline" />
+                <PropertyDetailsTag title="1 Bath" iconName="shower" />
+                <PropertyDetailsTag title="50x100" iconName="pencil-ruler" />
             </View>
         </View>
     );
@@ -49,6 +55,12 @@ const styles = StyleSheet.create({
     },
     location: {
         color: colors.lightTextColor
+    },
+    tags: {
+        marginVertical: 20,
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-evenly"
     }
 })
 

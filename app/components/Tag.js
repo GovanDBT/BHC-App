@@ -4,10 +4,10 @@ import { View, StyleSheet } from 'react-native';
 import AppText from './AppText';
 import colors from '../config/colors';
 
-function Tag({ title }) {
+function Tag({ title, color = "primaryTransparent", textColor="primary" }) {
     return (
-        <View style={styles.container}>
-            <AppText style={styles.text}>{title}</AppText>
+        <View style={[styles.container, { backgroundColor: colors[color] }]}>
+            <AppText style={[styles.text, { color: colors[textColor] }]}>{title}</AppText>
         </View>
     );
 }
