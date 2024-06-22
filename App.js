@@ -9,13 +9,12 @@ import Screen from './app/screens/Screen';
 import Card from './app/components/Card';
 import PropertyDetailsScreen from './app/screens/PropertyDetailsScreen';
 import ListItem from './app/components/ListItem';
+import ListingScreen from './app/screens/ListingScreen';
 
 export default function App() {
   return (
     <NavigationContainer theme={NavigationTheme}>
-      <Screen>
-        <ListItem title='Thembi Dibotelo' subtitle='10 Listings' image={require('./app/assets/user01.jpg')}  />
-      </Screen>
+        <ListingScreen />
     </NavigationContainer>
   );
 }
