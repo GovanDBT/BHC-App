@@ -17,7 +17,7 @@ function PropertyDetailsTag({ title, iconName }) {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.grayColor,
-        width: 110,
+        width: 100,
         paddingVertical: 10,
         borderRadius: 30,
         display: "flex",
