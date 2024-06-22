@@ -49,6 +49,17 @@ function PropertyDetailsScreen(props) {
                         </View>
                     </View>
                 </View>
+                <View style={[styles.sectionContainer, styles.listings]}>
+                    <View style={styles.applicantsContainer}>
+                        <Image source={require('../assets/user01.jpg')} style={[styles.applicants, {marginLeft: 0}]} />
+                        <Image source={require('../assets/user02.jpg')} style={styles.applicants} />
+                        <Image source={require('../assets/user03.jpg')} style={styles.applicants} />
+                    </View>
+                    <View style={styles.listingHeader}>
+                        <AppText style={styles.headerText} size={20}>Listings</AppText>
+                        <AppText style={styles.location}>10 Listings</AppText>
+                    </View>
+                </View>
                 <View style={styles.sectionContainer}>
                     <AppText style={styles.headerText} size={20}>Property Details</AppText>
                     <AppText style={styles.detailsText} size={16} >
@@ -142,10 +153,31 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginVertical: 10
     },
-    managementContainer: {
-        paddingBottom: 5,
+    
+    applicants: {
+        borderRadius: 100,
+        borderWidth: 5,
+        borderColor: colors.white,
+        width: 70,
+        height: 70,
+        marginLeft: -40
+    },
+    applicantsContainer: {
+        display: "flex",
+        flexDirection: "row"
+    },
+    listings: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        paddingVertical: 10,
         borderBottomWidth: 1,
         borderBottomColor: colors.inputBorderColor,
+        borderTopWidth: 1,
+        borderTopColor: colors.inputBorderColor
+    },
+    listingHeader: {
+        marginLeft: 10
     }
 })
 
