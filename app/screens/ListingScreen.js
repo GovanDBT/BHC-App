@@ -1,8 +1,9 @@
 import React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 
 import ListItem from '../components/ListItem';
 import Screen from './Screen';
+import ListItemSeparator from '../components/ListItemSeparator';
 
 const messages =[
     {
@@ -28,6 +29,7 @@ function ListingScreen(props) {
                 renderItem={({ item }) => 
                     <ListItem title={item.name} subtitle={item.date} image={item.image}/>
                 }
+                ItemSeparatorComponent={ListItemSeparator}
             />
         </Screen>
     );
