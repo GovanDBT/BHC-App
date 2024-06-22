@@ -1,8 +1,8 @@
 import React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList } from 'react-native';
 
-import ListItem from '../components/ListItem';
 import Screen from './Screen';
+import ListItem from '../components/ListItem';
 import ListItemSeparator from '../components/ListItemSeparator';
 
 const messages =[
@@ -20,7 +20,7 @@ const messages =[
     }
 ]
 
-function ListingScreen(props) {
+function ListingScreen() {
     return (
         <Screen>
             <FlatList 
@@ -34,9 +34,5 @@ function ListingScreen(props) {
         </Screen>
     );
 }
-
-const styles = StyleSheet.create({
-    
-})
 
 export default ListingScreen;
