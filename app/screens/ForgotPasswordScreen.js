@@ -1,11 +1,10 @@
 import React from "react";
-import { Button, Image, View, StyleSheet } from "react-native";
-import colors from "../config/colors";
-
+import { Image, View, StyleSheet, ScrollView, ImageBackground } from "react-native";
 import * as Yup from "yup";
 
-import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+import colors from "../config/colors";
 import AppText from "../components/AppText";
+import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -14,53 +13,47 @@ const validationSchema = Yup.object().shape({
 
 function ForgotPasswordScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image
-          source={require("../assets/background.png")}
-          style={styles.backgroundImage}
-        />
-        <Image source={require("../assets/bhclogo.png")} style={styles.logo} />
-      </View>
-      <View style={styles.formContainer}>
-        <AppText style={styles.heading}>Reset Password</AppText>
+    <ScrollView contentContainerStyle={styles.scrollContainer} >
+      <View style={styles.container}>
+        <ImageBackground source={require("../assets/background.png")} style={styles.backgroundImage}>
+          <Image source={require("../assets/bhclogo.png")} />
+        </ImageBackground>
+        <View style={styles.formContainer}>
+          <AppText style={styles.heading}>Reset Password</AppText>
+            <AppText style={styles.resetText}>
+              Enter your email registered with us. Follow the link sent to you to
+              reset the password.
+            </AppText>
 
-        <View style={styles.text}>
-          <AppText style={styles.resetText}>
-            Enter your email registered with us.Follow the link sent to you to
-            reset the password.
-          </AppText>
-          <AppText style={styles.loginText}>Login</AppText>
+          <AppForm
+            initialValues={{ email: "", password: "" }}
+            onSubmit={(values) => console.log(values)}
+            validationSchema={validationSchema}
+          >
+            <AppFormField
+              autoCapitalize="none"
+              autoCorrect={false}
+              keyboardType="email-address"
+              name="email"
+              placeholder="Email"
+              textContentType="emailAddress"
+            />
+
+            <SubmitButton title="Reset Password" onSubmit={() => navigation.navigate("Login")}/>
+          </AppForm>
+
+          <AppText style={styles.login} onPress={() => navigation.navigate("Login")} >Back To Login</AppText>
         </View>
-
-        <AppForm
-          initialValues={{ email: "", password: "" }}
-          onSubmit={(values) => console.log(values)}
-          validationSchema={validationSchema}
-        >
-          <AppFormField
-            autoCapitalize="none"
-            autoCorrect={false}
-            keyboardType="email-address"
-            name="email"
-            placeholder="Email"
-            textContentType="emailAddress"
-          />
-
-          <SubmitButton title="Reset Password" onSubmit={() => navigation.navigate("Login")}/>
-        </AppForm>
       </View>
-    </View>
-
-  
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+  },
   container: {
-    flexDirection: "column",
-    justifyContent: "center",
-    backgroundColor: "white",
     flex: 1,
   },
   imageContainer: {
@@ -70,49 +63,36 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
   },
   backgroundImage: {
-    width: "100%",
-    height: "50%",
-    position: "absolute",
-  },
-  logo: {
-    width: "40%",
-    height: "18%",
-    marginTop: 55,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '120%',
   },
   formContainer: {
-    width: "100%",
-    height: "25%",
-    padding: 20,
-    // alignItems: "center",
+    flex: 1,
+    paddingHorizontal: 15,
     backgroundColor: colors.white,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    position: "absolute",
   },
   heading: {
-    fontSize: 32,
-    alignSelf: "center",
-    color: colors.textColor,
-    fontWeight: 600,
+    fontSize: 26,
+    textAlign: "center",
+    fontWeight: 'bold',
+    marginBottom: 5,
+    marginTop: 10
   },
-  text: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent:"flex-end",
-    padding: 19,
-
-  },
-  loginText: {
+  login: {
+    marginVertical: 8,
     color: colors.primary,
-    textDecorationLine: "underline",
-    position:"absolute",
-    fontSize: 16,
-},
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
   resetText: {
     fontSize: 14,
+    textAlign: 'center',
     color: colors.lightTextColor,
-    textAlign: "center",
-    marginBottom: 10,
+    marginBottom: 8,
   },
 });
 

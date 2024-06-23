@@ -1,12 +1,11 @@
 import React from 'react';
 import { Text, StyleSheet, Platform } from 'react-native';
-// import colors from '../config/colors';
 
 import colors from '../config/colors';
 
-function AppText({ children, style, size = 16 }) {
+function AppText({ children, style, onPress, size = 16 }) {
     return (
-        <Text style={[styles.text, {fontSize: size}, style]}>{children}</Text>
+        <Text style={[styles.text, {fontSize: size}, style]} onPress={onPress}>{children}</Text>
     );
 }
 

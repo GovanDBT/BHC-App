@@ -16,6 +16,8 @@ import AccountScreen from './app/screens/AccountScreen';
 import PropertiesScreen from './app/screens/PropertiesScreen';
 import HomeScreen from './app/screens/HomeScreen';
 import LoginScreen from './app/screens/LoginScreen';
+import RegisterScreen from './app/screens/RegisterScreen';
+import ForgotPasswordScreen from './app/screens/ForgotPasswordScreen';
 
 export default function App() {
   
