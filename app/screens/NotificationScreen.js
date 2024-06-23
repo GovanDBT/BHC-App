@@ -1,8 +1,9 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 
 import NotificationItem from '../components/NotificationItem';
 import ListItemSeparator from '../components/ListItemSeparator';
+import NotificationItemDeleteAction from '../components/NotificationItemDeleteAction';
 
 const messages = [
     {
@@ -36,6 +37,7 @@ function NotificationScreen(props) {
                     description={item.description}
                     date={item.date}
                     onPress={ () => console.log(item)}
+                    renderRightActions={NotificationItemDeleteAction}
                 />
             }
             ItemSeparatorComponent={ListItemSeparator}

@@ -1,23 +1,29 @@
 import React from 'react';
-import { StyleSheet, TouchableHighlight, View } from 'react-native'
+import { StyleSheet, TouchableHighlight, View } from 'react-native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import AppText from './AppText';
 import colors from '../config/colors';
 
-function NotificationItem({ title, description, date, onPress}) {
+function NotificationItem({ title, description, date, onPress, renderRightActions }) {
     return (
-        <TouchableHighlight 
-            underlayColor={colors.inputBorderColor}
-            onPress={onPress}
-        >
-            <View style={styles.container}>
-                <View style={styles.header}>
-                    <AppText style={styles.title}>{title}</AppText>
-                    <AppText style={styles.text} size={13}>{date}</AppText>
-                </View>
-                    <AppText style={styles.text}>{description}</AppText>
-            </View>
-        </TouchableHighlight>
+        <GestureHandlerRootView>
+            <Swipeable renderRightActions={renderRightActions}>
+                <TouchableHighlight 
+                    underlayColor={colors.inputBorderColor}
+                    onPress={onPress}
+                >
+                    <View style={styles.container}>
+                        <View style={styles.header}>
+                            <AppText style={styles.title}>{title}</AppText>
+                            <AppText style={styles.text} size={13}>{date}</AppText>
+                        </View>
+                            <AppText style={styles.text}>{description}</AppText>
+                    </View>
+                </TouchableHighlight>
+            </Swipeable>
+        </GestureHandlerRootView>
     );
 }
 
