@@ -1,18 +1,23 @@
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native'
+import { StyleSheet, TouchableHighlight, View } from 'react-native'
 
 import AppText from './AppText';
 import colors from '../config/colors';
 
-function NotificationItem({ title, description, date}) {
+function NotificationItem({ title, description, date, onPress}) {
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <AppText style={styles.title}>{title}</AppText>
-                <AppText style={styles.text} size={13}>{date}</AppText>
+        <TouchableHighlight 
+            underlayColor={colors.inputBorderColor}
+            onPress={onPress}
+        >
+            <View style={styles.container}>
+                <View style={styles.header}>
+                    <AppText style={styles.title}>{title}</AppText>
+                    <AppText style={styles.text} size={13}>{date}</AppText>
+                </View>
+                    <AppText style={styles.text}>{description}</AppText>
             </View>
-                <AppText style={styles.text}>{description}</AppText>
-        </View>
+        </TouchableHighlight>
     );
 }
 

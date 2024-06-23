@@ -31,7 +31,12 @@ function NotificationScreen(props) {
             data={messages}
             keyExtractor={message => message.id.toString()}
             renderItem={({ item }) => 
-                <NotificationItem title={item.title} description={item.description} date={item.date} />
+                <NotificationItem 
+                    title={item.title}
+                    description={item.description}
+                    date={item.date}
+                    onPress={ () => console.log(item)}
+                />
             }
             ItemSeparatorComponent={ListItemSeparator}
         />
