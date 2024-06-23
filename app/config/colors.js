@@ -13,5 +13,6 @@ export default {
     greenTransparentx2: "rgba(49, 159, 67, 0.17)",
     blueColor: "#38559f",
     blueTransparent: "rgba(56, 85, 159, 0.36)",
-    blueTransparentx2: "rgba(56, 85, 159, 0.17)"
+    blueTransparentx2: "rgba(56, 85, 159, 0.17)",
+    danger: '#ff5252'
 }
