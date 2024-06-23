@@ -1,8 +1,9 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
 
 import Screen from './Screen';
 import Card from '../components/Card';
+import AppText from '../components/AppText';
 
 const properties = [
     {
@@ -27,7 +28,7 @@ const properties = [
         location: 'Tlokweng, Ngane Ward, Plot 7662',
         price: '850,000',
         tag: 'sale',
-        image: require('../assets/bhc-house02.jpg')
+        image: require('../assets/bhc-house03.jpg')
     },
     {
         id: 4,
@@ -40,23 +41,81 @@ const properties = [
 ]
 
 function PropertiesScreen(props) {
+    const propertyToDisplay = properties.filter(property => property.id === 2);
+
     return (
         <Screen>
-            <FlatList
-                data={properties}
-                keyExtractor={property => property.id.toString()}
-                renderItem={({ item }) =>
-                    <Card 
-                        image={item.image}
-                        price={item.price}
-                        tagName={item.tag}
-                        title={item.title}
-                        location={item.location}
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.container}>
+                    <AppText size={20} style={styles.text}>Popular Properties</AppText>
+                    <FlatList
+                        data={properties}
+                        keyExtractor={property => property.id.toString()}
+                        renderItem={({ item }) =>
+                            <Card 
+                                image={item.image}
+                                price={item.price}
+                                tagName={item.tag}
+                                title={item.title}
+                                location={item.location}
+                            />
+                        }
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                        contentContainerStyle={styles.list}
                     />
-                }
-            />
+                </View>
+                <View style={styles.container}>
+                    <AppText size={20} style={styles.text}>Recently Added</AppText>
+                    <FlatList
+                        data={properties}
+                        keyExtractor={property => property.id.toString()}
+                        renderItem={({ item }) =>
+                            <Card 
+                                image={item.image}
+                                price={item.price}
+                                tagName={item.tag}
+                                title={item.title}
+                                location={item.location}
+                            />
+                        }
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                        contentContainerStyle={styles.list}
+                    />
+                </View>
+                <View style={styles.container}>
+                    <AppText size={20} style={styles.text}>Recently Viewed</AppText>
+                    <FlatList
+                        data={propertyToDisplay}
+                        keyExtractor={property => property.id.toString()}
+                        renderItem={({ item }) =>
+                            <Card 
+                                image={item.image}
+                                price={item.price}
+                                tagName={item.tag}
+                                title={item.title}
+                                location={item.location}
+                            />
+                        }
+                        contentContainerStyle={styles.list}
+                    />
+                </View>
+            </ScrollView>
         </Screen>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        marginBottom: 15
+    },
+    list: {
+        paddingVertical: 20
+    },
+    text: {
+        fontWeight: 'bold'
+    }
+});
 
 export default PropertiesScreen;
