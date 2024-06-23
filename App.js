@@ -18,12 +18,16 @@ import HomeScreen from './app/screens/HomeScreen';
 import LoginScreen from './app/screens/LoginScreen';
 import RegisterScreen from './app/screens/RegisterScreen';
 import ForgotPasswordScreen from './app/screens/ForgotPasswordScreen';
+import SignupButton from './app/components/SignupButton';
+import SignupSeparator from './app/components/SignupSeparator';
 
 export default function App() {
   
   return (
     <NavigationContainer theme={NavigationTheme}>
-        <LoginScreen />
+        <Screen>
+          <SignupSeparator />
+        </Screen>
     </NavigationContainer>
   );
 }
