@@ -23,13 +23,13 @@ function Card({ image, price, title, location, tagName }) {
 
 const styles = StyleSheet.create({
     card: {
-        borderRadius: 15,
-        marginBottom: 20,
-        overflow: "hidden"
+        overflow: 'hidden',
+        marginRight: 17
     },
     image: {
         width: "100%",
-        height: 200
+        height: 200,
+        borderRadius: 10,
     },
     detailsContainer: {
         padding: 10

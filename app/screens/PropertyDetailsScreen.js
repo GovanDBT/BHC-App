@@ -19,7 +19,7 @@ const { width } = Dimensions.get('window');
 
 function PropertyDetailsScreen(props) {
     return (
-        <View style={styles.container}>
+        <View>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Image style={styles.image} source={require('../assets/bhc-house01.jpeg')} />
                 <View style={styles.detailsContainer}>
@@ -87,9 +87,6 @@ function PropertyDetailsScreen(props) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        paddingHorizontal: 15
-    },
     sectionContainer: {
         marginBottom: 20
     },

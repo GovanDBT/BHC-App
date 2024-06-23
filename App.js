@@ -13,11 +13,12 @@ import ListingScreen from './app/screens/ListingScreen';
 import NotificationItem from './app/components/NotificationItem';
 import NotificationScreen from './app/screens/NotificationScreen';
 import AccountScreen from './app/screens/AccountScreen';
+import PropertiesScreen from './app/screens/PropertiesScreen';
 
 export default function App() {
   return (
     <NavigationContainer theme={NavigationTheme}>
-        <AccountScreen />
+        <PropertiesScreen />
     </NavigationContainer>
   );
 }
