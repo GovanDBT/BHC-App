@@ -15,12 +15,13 @@ import NotificationScreen from './app/screens/NotificationScreen';
 import AccountScreen from './app/screens/AccountScreen';
 import PropertiesScreen from './app/screens/PropertiesScreen';
 import HomeScreen from './app/screens/HomeScreen';
+import LoginScreen from './app/screens/LoginScreen';
 
 export default function App() {
   
   return (
     <NavigationContainer theme={NavigationTheme}>
-        <HomeScreen />
+        <LoginScreen />
     </NavigationContainer>
   );
 }
