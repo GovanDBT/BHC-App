@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FlatList, View } from 'react-native';
 
 import NotificationItem from '../components/NotificationItem';
 import ListItemSeparator from '../components/ListItemSeparator';
 import NotificationItemDeleteAction from '../components/NotificationItemDeleteAction';
 
-const messages = [
+const initialMessages = [
     {
         id: 1,
         title: 'Customer Service',
@@ -27,6 +27,13 @@ const messages = [
 ]
 
 function NotificationScreen(props) {
+    const [messages, setMessages] = useState(initialMessages);
+
+    const handleDelete = message => {
+        const newMessages = messages.filter(m => m.id !== message.id);
+        setMessages(newMessages);
+    }
+
     return (
         <FlatList 
             data={messages}
@@ -37,7 +44,9 @@ function NotificationScreen(props) {
                     description={item.description}
                     date={item.date}
                     onPress={ () => console.log(item)}
-                    renderRightActions={NotificationItemDeleteAction}
+                    renderRightActions={() => 
+                        <NotificationItemDeleteAction onPress={() => handleDelete(item)} />
+                    }
                 />
             }
             ItemSeparatorComponent={ListItemSeparator}
