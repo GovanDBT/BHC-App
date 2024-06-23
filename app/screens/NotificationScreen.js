@@ -28,6 +28,7 @@ const initialMessages = [
 
 function NotificationScreen(props) {
     const [messages, setMessages] = useState(initialMessages);
+    const [refreshing, setRefreshing] = useState(false);
 
     const handleDelete = message => {
         const newMessages = messages.filter(m => m.id !== message.id);
@@ -50,6 +51,17 @@ function NotificationScreen(props) {
                 />
             }
             ItemSeparatorComponent={ListItemSeparator}
+            refreshing={refreshing}
+            onRefresh={() => {
+                setMessages([
+                    {
+                        id: 3,
+                        title: 'BHC Management',
+                        description: 'Your application has been approved',
+                        date: '20/06/2024'
+                    }
+                ])
+            }}
         />
     );
 }
