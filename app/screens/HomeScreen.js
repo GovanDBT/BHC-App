@@ -21,19 +21,13 @@ function HomeScreen(props) {
                                 <AppText style={styles.textHeader}>Payments</AppText>
                                 <MaterialCommunityIcons name="arrow-top-right" size={22} color={colors.textColor} />
                             </View>
-                            <View>
-                                <View>
-                                    <AppText>Upcoming</AppText>
-                                    <AppText>29/06/2024</AppText>
-                                </View>
-                                <AppText>P 4,840</AppText>
+                            <View style={styles.paymentType}>
+                                <AppText style={styles.paymentTypeHeader}>Upcoming</AppText>
+                                <AppText style={styles.paymentTypePrice}>P 4,840</AppText>
                             </View>
-                            <View>
-                                <View>
-                                    <AppText>Outstanding</AppText>
-                                    <AppText>29/06/2024</AppText>
-                                </View>
-                                <AppText>P 200</AppText>
+                            <View style={styles.paymentType}>
+                                <AppText style={styles.paymentTypeHeader}>Outstanding</AppText>
+                                <AppText style={styles.paymentTypePrice}>P 200</AppText>
                             </View>
                         </View>
                         <View style={styles.cardPropertyContent}>
@@ -41,9 +35,9 @@ function HomeScreen(props) {
                                 <AppText style={styles.textHeader}>My Property</AppText>
                                 <MaterialCommunityIcons name="arrow-top-right" size={22} color={colors.textColor} />
                             </View>
-                            <AppText>Type: Bachelor Pad</AppText>
-                            <AppText>Since: 10/28/2018</AppText>
-                            <AppText>Ends: 10/28/2027</AppText>
+                            <AppText style={styles.propertyType}>Type: Bachelor Pad</AppText>
+                            <AppText style={styles.propertyType}>Since: 10/28/2018</AppText>
+                            <AppText style={styles.propertyType}>Ends: 10/28/2027</AppText>
                         </View>
                     </View>
                     <View style={styles.cardPaymentHistory}>
@@ -88,6 +82,7 @@ const styles = StyleSheet.create({
     headers: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center'
     },
     homeCard: {
         borderWidth: 1,
@@ -95,6 +90,19 @@ const styles = StyleSheet.create({
         height: 210,
         borderRadius: 10,
         padding: 8,
+    },
+    paymentType: {
+        marginTop: 7,
+    },
+    paymentTypeHeader: {
+        fontWeight: 'bold',
+        color: colors.primary
+    },
+    paymentTypePrice: {
+        color: colors.lightTextColor
+    },
+    propertyType: {
+        marginTop: 10
     },
     sectionHeader: {
         marginBottom: 10,
@@ -104,6 +112,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: 'bold',
     },
+    
 })
 
 export default HomeScreen;
