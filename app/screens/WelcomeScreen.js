@@ -11,9 +11,11 @@ function WelcomeScreen({ navigation }) {
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer} >
       <View style={styles.container}>
+
         <ImageBackground source={require("../assets/background.png")} style={styles.backgroundImage}>
           <Image source={require("../assets/bhclogo.png")} style={styles.logo} />
         </ImageBackground>
+
         <View style={styles.formContainer}>
           <AppText style={styles.heading}>Welcome To BHC</AppText>
           <AppText style={styles.welcomeText}>Register or Login to access our products and services</AppText>
@@ -29,7 +31,9 @@ function WelcomeScreen({ navigation }) {
             <AppText>Already have an account?</AppText>
             <AppText style={styles.createAccount} onPress={() => navigation.navigate("Login")}>Login</AppText>
           </View>
+
         </View>
+        
       </View>
     </ScrollView>
   );
@@ -38,19 +42,9 @@ function WelcomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
-    // justifyContent: "center",
-    // backgroundColor: "white",
   },
   container: {
     flex: 1,
-    // alignItems: "center",
-    // justifyContent: "center",
-  },
-  imageContainer: {
-    // flex: 1,
-    // width: "100%",
-    // alignItems: "center",
-    // alignSelf: "flex-start",
   },
   backgroundImage: {
     flex: 1,
@@ -59,23 +53,13 @@ const styles = StyleSheet.create({
     height: '120%',
   },
   logo: {
-    // width: "60%",
-    // height: "20%",
-    // marginTop: 55,
   },
   formContainer: {
     flex: 1,
     paddingHorizontal: 15,
-    // width: "100%",
-    // height: "30%",
-    // padding: 20,
-    // paddingTop: 5,
-    // alignItems: "center",
     backgroundColor: colors.white,
-    // overflow: 'hidden',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    // position: "absolute",
   },
   heading: {
     fontSize: 26,
@@ -94,24 +78,12 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontWeight: 'bold'
   },
-  CheckBoxRow: {
-    // flexDirection: "row",
-    // marginVertical: 10,
-  },
   welcomeText: {
     fontSize: 14,
     textAlign: 'center',
     color: colors.lightTextColor,
     marginBottom: 8,
-  },
-  forgotPassword: {
-    // fontSize: 14,
-    // marginLeft: 50,
-    // textDecorationLine: "underline",
-  },
-  rememberMe: {
-    // fontSize: 14,
-  },
+  }
 });
 
 export default WelcomeScreen;
