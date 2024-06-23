@@ -6,10 +6,10 @@ import NavigationTheme from './app/navigation/NavigationTheme';
 import AppNavigator from './app/navigation/AppNavigator';
 
 export default function App() {
-  console.log('App executed');
+  
   return (
     <NavigationContainer theme={NavigationTheme}>
-      <AppNavigator />
+      <AuthNavigator />
     </NavigationContainer>
   );
 }
