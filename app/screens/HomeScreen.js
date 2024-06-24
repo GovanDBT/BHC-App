@@ -5,6 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Screen from './Screen';
 import colors from '../config/colors';
 import AppText from '../components/AppText';
+import AccountSummary from '../components/AccountSummary';
 
 function HomeScreen(props) {
     return (
@@ -14,7 +15,7 @@ function HomeScreen(props) {
                     <AppText size={20} style={styles.sectionHeader}>Dumela Thembi</AppText>
                     <MaterialCommunityIcons style={styles.headIcon} name="hand-wave-outline" size={22} color={colors.primary} />
                 </View>
-                <View style={styles.homeCard}>
+                <AccountSummary />
                     <View style={styles.cardContent}>
                         <View style={styles.cardPaymentContent}>
                             <View style={styles.headers}>
@@ -46,7 +47,6 @@ function HomeScreen(props) {
                                 <MaterialCommunityIcons name="arrow-top-right" size={22} color={colors.textColor} />
                             </View>
                     </View>
-                </View>
             </View>
         </Screen>
     );
