@@ -25,13 +25,14 @@ import MaintenanceScreen from './app/screens/MaintenanceScreen';
 import PropertyDetailsTag from './app/components/PropertyDetailsTag';
 import PaymentScreen from './app/screens/PaymentScreen';
 import NewsCard from './app/components/NewsCard';
+import RentApplication from './app/screens/RentApplication';
 
 export default function App() {
   
   return (
     <NavigationContainer theme={NavigationTheme}>
         {/* <Screen> */}
-          <HomeScreen />
+          <RentApplication />
         {/* </Screen> */}
     </NavigationContainer>
   );
