@@ -21,12 +21,15 @@ import ForgotPasswordScreen from './app/screens/ForgotPasswordScreen';
 import SignupButton from './app/components/SignupButton';
 import SignupSeparator from './app/components/SignupSeparator';
 import WelcomeScreen from './app/screens/WelcomeScreen';
+import MaintenanceScreen from './app/screens/MaintenanceScreen';
+import PropertyDetailsTag from './app/components/PropertyDetailsTag';
+import PaymentScreen from './app/screens/PaymentScreen';
 
 export default function App() {
   
   return (
     <NavigationContainer theme={NavigationTheme}>
-        <WelcomeScreen />
+        <MaintenanceScreen />
     </NavigationContainer>
   );
 }
