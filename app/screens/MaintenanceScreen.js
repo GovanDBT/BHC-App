@@ -127,6 +127,7 @@ function MaintenanceScreen(props) {
             textContentType="none"
           />
 
+            {/* TODO: Add camera functionality */}
           <View style={styles.camera}></View>
 
           <SubmitButton
