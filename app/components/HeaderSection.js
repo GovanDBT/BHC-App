@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginBottom: 10,
         justifyContent: 'space-between',
-        alignItems: 'center',
+        alignContent: 'center',
         borderBottomWidth: 1,
         borderBottomColor: colors.inputBorderColor,
         paddingBottom: 5
