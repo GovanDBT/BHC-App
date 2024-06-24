@@ -1,5 +1,7 @@
 # BHC App ~ By LabRats
 The Botswana Housing Corporation (BHC) is seeking to procure a user-friendly and efficient mobile application through a hackathon procurement method. This hackathon will provide an opportunity for tech enthusiasts and developers to collaborate and create innovative solutions for BHC's mobile application needs.
+![others](https://github.com/GovanDBT/BHC-App/assets/62579660/a29b26e3-5246-4358-bf22-8f74a9baa699)
+
 
 ## How To Run The App
 1. Clone or download a zip file of the project on your device
