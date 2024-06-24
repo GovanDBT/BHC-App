@@ -1,13 +1,17 @@
 import React from 'react';
-import { Image, View, StyleSheet, Dimensions, ScrollView  } from 'react-native';
+import { Image, View, StyleSheet, Dimensions, ScrollView, Button } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import * as FileSystem from 'expo-file-system';
+import * as Sharing from 'expo-sharing';
+
 
 import Screen from './Screen';
 import colors from '../config/colors';
 import AppText from '../components/AppText';
-import PropertyDetailsTag from '../components/PropertyDetailsTag';
+import AppButton from '../components/AppButton';
 import HeaderSection from '../components/HeaderSection';
 import SectionContainer from '../components/SectionContainer';
+import PropertyDetailsTag from '../components/PropertyDetailsTag';
 
 const { width } = Dimensions.get('window');
 
@@ -17,6 +21,20 @@ const images = [
     require('../assets/house01-hall-way.jpg'),
     require('../assets/house01-plan.png')
 ]
+
+const downloadAndSharePDF = async () => {
+    const filename = 'LeaseAgreement.pdf';
+    const result = await FileSystem.downloadAsync(
+        'https://drive.google.com/file/d/11g6OKo7jeG0tXP-pmoP-kCRits5R4CeU/view?usp=drive_link',
+        FileSystem.documentDirectory + filename
+    );
+
+    save(result.uri)
+};
+
+const save = (uri) => {
+    Sharing.shareAsync(uri);
+}
 
 function MyPropertyScreen(props) {
     return (
@@ -37,9 +55,7 @@ function MyPropertyScreen(props) {
                 </View>
                 {/* Property Management */}
                 <SectionContainer>
-                    <View style={styles.managementContainer}>
-                        <HeaderSection title='Property Management' link={false} />
-                    </View>
+                    <HeaderSection title='Property Management' link={false} />
                     <View style={styles.contactsContainer}>
                         <View style={styles.contacts}>
                             <MaterialCommunityIcons style={{marginRight: 10}} name="email-outline" size={24} color={colors.textColor} />
@@ -50,6 +66,11 @@ function MyPropertyScreen(props) {
                             <AppText>(+267)364 6900</AppText>
                         </View>
                     </View>
+                </SectionContainer>
+                {/* Documents */}
+                <SectionContainer>
+                    <HeaderSection title='attached Documents' link={false} />
+                    <AppButton title='Download Lease' onPress={downloadAndSharePDF} />
                 </SectionContainer>
                 {/* Property Details */}
                 <SectionContainer>
