@@ -1,15 +1,16 @@
 import React from "react";
 import Screen from "./Screen";
-import { ScrollView, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import AppText from "../components/AppText";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+import colors from "../config/colors";
 
 function RentApplication(props) {
   return (
     <Screen>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
-          <AppText>
+          <AppText style={styles.paragaphText}>
             We hope we can assist you in finding your new home. We ask that you
             provide your details so that we can contact you, should a property
             suiting your requirements become available. Please note that we will
@@ -60,23 +61,23 @@ function RentApplication(props) {
             textContentType="email"
           />
 
-          <View>
-            <AppText>Are you currently renting?</AppText>
+          <View style={styles.radioButtons}>
+            <AppText style={styles.paragaphText}>Are you currently renting?</AppText>
 
             {/* Radio Buttons */}
-            <AppText>Yes</AppText>
-            <AppText>No</AppText>
+            <AppText style={styles.paragaphText}>Yes</AppText>
+            <AppText style={styles.paragaphText}>No</AppText>
           </View>
 
-          <AppText>If Yes, when is the lease expiring?</AppText>
+          <AppText style={styles.paragaphText}>If Yes, when is the lease expiring?</AppText>
 
           {/* Date Pickers */}
-          <View></View>
+          <View style={styles.date}></View>
 
-          <AppText>Date Property Required?</AppText>
+          <AppText style={styles.paragaphText}>Date Property Required?</AppText>
 
           {/* Date Pickers */}
-          <View></View>
+          <View style={styles.date}></View>
 
           <AppFormField
             autoCapitalize="none"
@@ -96,13 +97,13 @@ function RentApplication(props) {
             textContentType="none"
           />
 
-          <AppText>Type of Property</AppText>
+          <AppText style={styles.paragaphText}>Type of Property</AppText>
 
           {/* Radio Buttons */}
-          <View>
-            <AppText>House</AppText>
-            <AppText>TownHouse</AppText>
-            <AppText>Flat</AppText>
+          <View style={styles.radioButtons}>
+            <AppText style={styles.paragaphText}>House</AppText>
+            <AppText style={styles.paragaphText}>TownHouse</AppText>
+            <AppText style={styles.paragaphText}>Flat</AppText>
           </View>
 
           <AppFormField
@@ -151,5 +152,18 @@ function RentApplication(props) {
     </Screen>
   );
 }
+
+const styles = StyleSheet.create({
+    paragaphText: {
+        color: colors.lightTextColor,
+
+    },
+
+    radioButtons: {
+        flexDirection: "row",
+        justifyContent:"space-around"
+
+    },
+})
 
 export default RentApplication;
