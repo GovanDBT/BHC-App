@@ -26,13 +26,14 @@ import PropertyDetailsTag from './app/components/PropertyDetailsTag';
 import PaymentScreen from './app/screens/PaymentScreen';
 import NewsCard from './app/components/NewsCard';
 import Link from './app/components/Link';
+import HeaderSection from './app/components/HeaderSection';
 
 export default function App() {
   
   return (
     <NavigationContainer theme={NavigationTheme}>
         <Screen>
-          <Link />
+          <HeaderSection title='Latest News' />
         </Screen>
     </NavigationContainer>
   );

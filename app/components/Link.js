@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import AppText from './AppText';
 import colors from '../config/colors';
 
-function Link(props) {
+function Link({ onPress, size = 18 }) {
     return (
-        <View style={styles.container}>
-            <AppText style={styles.text}>See More</AppText>
-            <MaterialCommunityIcons name="arrow-right" size={24} color={colors.primary} />
-        </View>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
+            <AppText style={styles.text} size={size}>See More</AppText>
+            <MaterialCommunityIcons name="arrow-right" size={size + 8} color={colors.primary} />
+        </TouchableOpacity>
     );
 }
 

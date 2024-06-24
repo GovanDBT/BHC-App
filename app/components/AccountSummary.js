@@ -70,8 +70,6 @@ const styles = StyleSheet.create({
     },
     cardPaymentContent: {
         flex: 1,
-        borderRightWidth: 1,
-        borderRightColor: colors.inputBorderColor,
         padding: 4,
     },
     cardPaymentHistory: {
@@ -117,10 +115,6 @@ const styles = StyleSheet.create({
     propertyType: {
         marginTop: 10,
         color: colors.white
-    },
-    sectionHeader: {
-        marginBottom: 10,
-        fontWeight: 'bold'
     },
     textHeader: {
         fontSize: 17,
