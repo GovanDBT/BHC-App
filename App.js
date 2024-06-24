@@ -24,12 +24,15 @@ import WelcomeScreen from './app/screens/WelcomeScreen';
 import MaintenanceScreen from './app/screens/MaintenanceScreen';
 import PropertyDetailsTag from './app/components/PropertyDetailsTag';
 import PaymentScreen from './app/screens/PaymentScreen';
+import NewsCard from './app/components/NewsCard';
 
 export default function App() {
   
   return (
     <NavigationContainer theme={NavigationTheme}>
-        <MaintenanceScreen />
+        {/* <Screen> */}
+          <HomeScreen />
+        {/* </Screen> */}
     </NavigationContainer>
   );
 }
