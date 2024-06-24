@@ -13,6 +13,8 @@ import AppText from "../components/AppText";
 import Screen from "../screens/Screen";
 import defaultStyles from "../config/styles";
 import PickerItem from "./PickerItem";
+import AppButton from "./AppButton";
+import colors from "../config/colors";
 
 function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -44,7 +46,7 @@ function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
       </TouchableWithoutFeedback>
       <Modal visible={modalVisible} animationType="slide">
         <Screen>
-          <Button title="Close" onPress={() => setModalVisible(false)} />
+          <AppButton title="Close" onPress={() => setModalVisible(false)} />
           <FlatList
             data={items}
             keyExtractor={(item) => item.value.toString()}
@@ -71,13 +73,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     padding: 15,
-    marginVertical: 10,
   },
   icon: {
     marginRight: 10,
   },
   placeholder: {
-    color: defaultStyles.colors.medium,
+    color: colors.lightTextColor,
     flex: 1,
   },
   text: {
