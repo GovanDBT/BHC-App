@@ -15,10 +15,17 @@ import AppText from "../components/AppText";
 import colors from "../config/colors";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import AppTextInput from "../components/AppTextInput";
+import AppPicker from "../components/AppPicker";
 
 // NOTE:
 // const [isEnabled, setIsEnabled] = useState(false);
 // const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+
+const reportProblems = [
+  { label: "Appliances", value: 1 },
+  { label: "Appliances", value: 2 },
+  { label: "Appliances", value: 3 },
+];
 
 function MaintenanceScreen(props) {
   return (
@@ -102,8 +109,14 @@ function MaintenanceScreen(props) {
             textContentType="none"
           />
           <AppText style={styles.problemType}>Type of Problem:</AppText>
-         
-         
+
+          <View style={styles.picker}>
+            <AppPicker
+              items={reportProblems}
+              placeholder={"Select a type of problem"}
+            />
+          </View>
+
           <AppTextInput
             style={styles.description}
             autoCapitalize="none"
@@ -167,20 +180,29 @@ const styles = StyleSheet.create({
   },
   problemType: {
     color: colors.lightTextColor,
+    marginBottom: 5,
   },
   description: {
     height: 50,
     alignItems: "center",
+    
   },
   camera: {
-    width: '100%',
+    width: "100%",
     height: 100,
     borderWidth: 1,
     borderColor: colors.inputBorderColor,
     borderRadius: 20,
     padding: 10,
+    marginVertical: 10,
+  },
+  picker: {
+    borderWidth: 1,
+    borderColor: colors.inputBorderColor,
+    borderRadius: 20,
+    marginBottom: 10,
 
-  }
+  },
 });
 
 export default MaintenanceScreen;
