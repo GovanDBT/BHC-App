@@ -14,7 +14,7 @@ function NewsCard({ image, date, title, description }) {
             <View style={styles.content}>
                 <AppText style={styles.date}>{date}</AppText>
                 <AppText style={styles.title}>{title}</AppText>
-                <AppText numberOfLines={5} style={styles.text}>{description}</AppText>
+                <AppText numberOfLines={4} style={styles.text}>{description}</AppText>
                 <View style={styles.link}>
                     <MaterialCommunityIcons style={styles.linkIcon} name="arrow-top-right-thin-circle-outline" size={18} color={colors.primary} />
                     <AppText style={styles.linkText}>Find out more</AppText>
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
         borderColor: colors.inputBorderColor,
         borderRadius: 10,
         overflow: 'hidden',
+        marginRight: 25
     },
     content: {
         flex: 1.3,

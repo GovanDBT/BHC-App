@@ -25,16 +25,14 @@ import MaintenanceScreen from './app/screens/MaintenanceScreen';
 import PropertyDetailsTag from './app/components/PropertyDetailsTag';
 import PaymentScreen from './app/screens/PaymentScreen';
 import NewsCard from './app/components/NewsCard';
-import Link from './app/components/Link';
-import HeaderSection from './app/components/HeaderSection';
 
 export default function App() {
   
   return (
     <NavigationContainer theme={NavigationTheme}>
-        <Screen>
-          <HeaderSection title='Latest News' />
-        </Screen>
+        {/* <Screen> */}
+          <HomeScreen />
+        {/* </Screen> */}
     </NavigationContainer>
   );
 }

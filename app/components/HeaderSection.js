@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
         paddingBottom: 5
     },
     text: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textTransform: 'capitalize'
     }
 })
 
