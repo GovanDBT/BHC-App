@@ -1,19 +1,31 @@
 import React from "react";
-import { TouchableOpacity, StyleSheet } from "react-native";
+import { TouchableOpacity, StyleSheet, View } from "react-native";
 import AppText from "./AppText";
+import colors from "../config/colors";
 
 function PickerItem({ label, onPress }) {
   return (
     <TouchableOpacity onPress={onPress}>
-      <AppText style={styles.text}>{label}</AppText>
+      <View style={styles.text}> 
+        <AppText style={styles.textProblems}>{label}</AppText>
+      </View>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   text: {
-    padding: 20,
+    alignItems: "center",
+    padding: 15,
+    marginVertical: 10,
+    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: colors.inputBorderColor,
+    // backgroundColor: colors.primary,
   },
+  textProblems: {
+    color: colors.textColor,
+  }
 });
 
 export default PickerItem;
