@@ -25,9 +25,17 @@ import HeaderSection from "../components/HeaderSection";
 // const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
 const reportProblems = [
-  { label: "Appliances", value: 1 },
-  { label: "Appliances", value: 2 },
-  { label: "Appliances", value: 3 },
+  { label: "Damaged Roof", value: 1 },
+  { label: "Damaged Tiles", value: 2 },
+  { label: "Missing Dust bin", value: 3 },
+  { label: "Broken Window", value: 4 },
+  { label: "Damaged Gate", value: 5 },
+  { label: "Light Shade Missing", value: 6 },
+  { label: "Burnt Socket", value: 7 },
+  { label: "Blockage Sewer", value: 8 },
+  { label: "Vandalized Property", value: 9 },
+  { label: "Door lock missing", value: 10 },
+  { label: "Damaged Curtain Rails", value: 11 },
 ];
 
 const category = [
@@ -178,7 +186,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   emergencyText: {
-    color: colors.primary,
+    color: colors.primary, 
     textAlign: 'center',
     fontWeight: 'bold'
   },
