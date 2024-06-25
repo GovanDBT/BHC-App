@@ -27,6 +27,7 @@ import PaymentScreen from './app/screens/PaymentScreen';
 import NewsCard from './app/components/NewsCard';
 import RentApplication from './app/screens/RentApplication';
 import BuyApplication from './app/screens/BuyApplication';
+import MyPropertyScreen from './app/screens/MyPropertyScreen';
 
 export default function App() {
   

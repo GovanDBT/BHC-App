@@ -5,11 +5,11 @@ import Link from './Link';
 import AppText from './AppText';
 import colors from '../config/colors';
 
-function HeaderSection({ onPress, title, size = 20 }) {
+function HeaderSection({ onPress, title, size = 20, link = true }) {
     return (
         <View style={styles.container}>
             <AppText style={styles.text} size={size}>{title}</AppText>
-            <Link onPress={onPress} size={size} />
+            {link && <Link onPress={onPress} size={size} />}
         </View>
     );
 }
