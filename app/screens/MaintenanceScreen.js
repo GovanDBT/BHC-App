@@ -73,7 +73,7 @@ function MaintenanceScreen({ navigation }) {
             autoCorrect={false}
             keyboardType="default"
             name="firstname"
-            placeholder="Firstname"
+            placeholder="FirstName"
             textContentType="name"
           />
           <AppFormField
@@ -87,26 +87,29 @@ function MaintenanceScreen({ navigation }) {
           <AppFormField
             autoCapitalize="none"
             autoCorrect={false}
-            keyboardType="default"
+            keyboardType="numeric"
             name="plotNo"
             placeholder="Plot Number"
             textContentType="none"
+            width={200}
           />
           <AppFormField
             autoCapitalize="none"
             autoCorrect={false}
-            keyboardType="default"
+            keyboardType="numeric"
             name="telephone"
             placeholder="Telephone"
             textContentType="telephoneNumber"
+            width={220}
           />
           <AppFormField
             autoCapitalize="none"
             autoCorrect={false}
-            keyboardType="default"
+            keyboardType="numeric"
             name="mobileNo"
             placeholder="Mobile No."
             textContentType="none"
+            width={220}
           />
           <AppText style={styles.problemType}>Type of Problem:</AppText>
 

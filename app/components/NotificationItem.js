@@ -18,10 +18,10 @@ function NotificationItem({ title, description, date, onPress, renderRightAction
                     <View style={styles.container}>
                         <View style={styles.detailsContainer}>
                             <View style={styles.header}>
-                                <AppText style={styles.title}>{title}</AppText>
+                                <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
                                 <AppText style={styles.text} size={13}>{date}</AppText>
                             </View>
-                                <AppText style={styles.text}>{description}</AppText>
+                                <AppText style={styles.text} numberOfLines={1}>{description}</AppText>
                         </View>
                             <MaterialCommunityIcons name='chevron-right' size={25} color={colors.lightTextColor} />
                     </View>
