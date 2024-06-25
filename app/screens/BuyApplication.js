@@ -10,25 +10,25 @@ import AppDatePicker from "../components/AppDatePicker";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import PropertyDetailsScreen from "./PropertyDetailsScreen";
 
-const age = [
+const ages = [
   { label: "18-21", value: 1 },
   { label: "21-30", value: 2 },
   { label: "30+", value: 3 },
 ];
 
-const employementStatus = [
-  { label: "Student", value: 1 },
-  { label: "Unemployed", value: 2 },
+const employementStatuses = [
+  { label: "Unemployed", value: 1 }, 
+  { label: "Student", value: 2 },
   { label: "Employed", value: 3 },
   { label: "Self Employed", value: 4 },
 ];
 
 const ownBHCHouses = [
-  { label: "Yes", value: 1 },
-  { label: "No", value: 2 },
+  { label: "No", value: 1 },
+  { label: "Yes", value: 2 },
 ];
 
-const preferedHouse = [
+const preferedHouses = [
   { label: "House", value: 1 },
   { label: "TwinHouse", value: 2 },
   { label: "Flat", value: 3 },
@@ -42,7 +42,6 @@ const bedrooms = [
 ];
 
 function BuyApplication() {
-
   const Property = PropertyDetailsScreen.route;
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -50,10 +49,17 @@ function BuyApplication() {
     setSelectedDate(date);
   };
 
+  const [bedroom, setBedrooms] = useState(bedrooms[0]);
+  const [age, setAges] = useState(ages[0]);
+  const [preferedHouse, setPreferedHouse] = useState(preferedHouses[0]);
+  const [ownBHCHouse, setownBHCHouses] = useState(ownBHCHouses[0]);
+  const [employementStatuse, setEmployementStatuses] = useState(
+    employementStatuses[0]
+  );
+
   return (
     <Screen>
       <ScrollView showsVerticalScrollIndicator={false}>
-
         <AppText style={styles.text}>
           We hope we can assist you in finding your new home. We ask that you
           provide your details so that we can contact you, should a property
@@ -63,7 +69,6 @@ function BuyApplication() {
         </AppText>
 
         <AppForm>
-
           <AppFormField
             autoCapitalize="none"
             autoCorrect={false}
@@ -130,14 +135,26 @@ function BuyApplication() {
           <View>
             <AppText style={styles.text}>Age</AppText>
             <View style={styles.picker}>
-              <AppPicker items={age} placeholder={"Select"} />
+              <AppPicker
+                selectedItem={age}
+                onSelectItem={(age) => setAges(age)}
+                items={ages}
+                placeholder={"Select"}
+              />
             </View>
           </View>
 
           <View>
             <AppText style={styles.text}>Employment Status</AppText>
             <View style={styles.picker}>
-              <AppPicker items={employementStatus} placeholder={"Select"} />
+              <AppPicker
+                selectedItem={employementStatuse}
+                onSelectItem={(employementStatuses) =>
+                  setEmployementStatuses(employementStatus)
+                }
+                items={employementStatuses}
+                placeholder={"Select"}
+              />
             </View>
           </View>
 
@@ -151,23 +168,44 @@ function BuyApplication() {
           />
 
           <View>
-            <AppText style={styles.text}>Have you bought or rented a BHC house before?</AppText>
+            <AppText style={styles.text}>
+              Have you bought or rented a BHC house before?
+            </AppText>
             <View style={styles.picker}>
-              <AppPicker items={ownBHCHouses} placeholder={"Select"} />
+              <AppPicker
+                selectedItem={ownBHCHouse}
+                onSelectItem={(house) => setownBHCHouses(house)}
+                items={ownBHCHouses}
+                placeholder={"Select"}
+              />
             </View>
           </View>
 
           <View>
-            <AppText style={styles.text}>What is your preferred house type?</AppText>
+            <AppText style={styles.text}>
+              What is your preferred house type?
+            </AppText>
             <View style={styles.picker}>
-              <AppPicker items={preferedHouse} placeholder={"Select"} />
+              <AppPicker
+                selectedItem={preferedHouse}
+                onSelectItem={(house) => setPreferedHouse(house)}
+                items={preferedHouses}
+                placeholder={"Select"}
+              />
             </View>
           </View>
 
           <View>
-            <AppText style={styles.text}>What is your preferred number of bedrooms?</AppText>
+            <AppText style={styles.text}>
+              What is your preferred number of bedrooms?
+            </AppText>
             <View style={styles.picker}>
-              <AppPicker items={bedrooms} placeholder={"Select"} />
+              <AppPicker
+                selectedItem={bedroom}
+                onSelectItem={(bedroom) => setBedrooms(bedroom)}
+                items={bedrooms}
+                placeholder={"Select"}
+              />
             </View>
           </View>
 
@@ -191,9 +229,9 @@ function BuyApplication() {
 }
 
 const styles = StyleSheet.create({
-    text: {
-        color: colors.lightTextColor,
-    },
+  text: {
+    color: colors.lightTextColor,
+  },
 
   picker: {
     borderWidth: 1,

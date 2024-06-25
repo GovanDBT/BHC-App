@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -38,31 +38,38 @@ const reportProblems = [
   { label: "Damaged Curtain Rails", value: 11 },
 ];
 
-const category = [
-  {label: 'Normal', value: 1},
-  {label: 'Urgent', value: 2},
-  {label: 'Emergency - 24hrs', value: 3}
-]
+const categories = [
+  { label: "Normal", value: 1 },
+  { label: "Urgent", value: 2 },
+  { label: "Emergency - 24hrs", value: 3 },
+];
 
 function MaintenanceScreen({ navigation }) {
+  const [reportProblem, setProblem] = useState(reportProblems[0]);
+  const [category, setCategory] = useState(categories[0]);
+
   return (
     <Screen>
-      <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[0]}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        stickyHeaderIndices={[0]}
+      >
         {/* Top Header */}
-        <TopHeader 
-            title='Maintenance'
-            onPress={() => navigation.navigate(Routes.MY_MAINTENANCE)} 
-            notifications={() => navigation.navigate(Routes.NOTIFICATIONS)} 
-            customer={() => navigation.navigate(Routes.CUSTOMER_SUPPORT)}
+        <TopHeader
+          title="Maintenance"
+          onPress={() => navigation.navigate(Routes.MY_MAINTENANCE)}
+          notifications={() => navigation.navigate(Routes.NOTIFICATIONS)}
+          customer={() => navigation.navigate(Routes.CUSTOMER_SUPPORT)}
         />
         {/* Your Reports Row */}
-        <HeaderSection title='Report History' />
+        <HeaderSection title="Report History" />
 
         {/* Emergency container */}
         <View style={styles.emergencyContainer}>
           <View>
             <AppText style={styles.emergencyText}>
-              Call BHC Call Center to report a fault on Tel: 315 9902 or 1167 (Landline)
+              Call BHC Call Center to report a fault on Tel: 315 9902 or 1167
+              (Landline)
             </AppText>
           </View>
         </View>
@@ -123,7 +130,9 @@ function MaintenanceScreen({ navigation }) {
 
           <View style={styles.picker}>
             <AppPicker
-              items={category}
+              selectedItem={category}
+              onSelectItem={(item) => setCategory(item)}
+              items={categories}
               placeholder={"Select Category"}
             />
           </View>
@@ -132,6 +141,8 @@ function MaintenanceScreen({ navigation }) {
 
           <View style={styles.picker}>
             <AppPicker
+              selectedItem={reportProblem}
+              onSelectItem={(item) => setProblem(item)}
               items={reportProblems}
               placeholder={"Select a type of problem"}
             />
@@ -147,7 +158,7 @@ function MaintenanceScreen({ navigation }) {
             textContentType="none"
           />
 
-            {/* TODO: Add camera functionality */}
+          {/* TODO: Add camera functionality */}
           <View style={styles.camera}></View>
 
           <SubmitButton
@@ -186,14 +197,14 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   emergencyText: {
-    color: colors.primary, 
-    textAlign: 'center',
-    fontWeight: 'bold'
+    color: colors.primary,
+    textAlign: "center",
+    fontWeight: "bold",
   },
   text: {
     fontSize: 14,
     color: colors.lightTextColor,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 10,
   },
   termsConditions: {
@@ -208,7 +219,6 @@ const styles = StyleSheet.create({
   description: {
     height: 50,
     alignItems: "center",
-    
   },
   camera: {
     width: "100%",
@@ -224,7 +234,6 @@ const styles = StyleSheet.create({
     borderColor: colors.inputBorderColor,
     borderRadius: 20,
     marginBottom: 10,
-
   },
 });
 
