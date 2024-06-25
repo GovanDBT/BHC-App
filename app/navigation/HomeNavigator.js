@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Routes from './Routes';
 import HomeScreen from '../screens/HomeScreen';
+import PaymentScreen from '../screens/PaymentScreen';
 import MyPropertyScreen from '../screens/MyPropertyScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import CustomerSupportScreen from '../screens/CustomerSupportScreen';
@@ -15,6 +16,7 @@ const HomeNavigator = () => (
         <Stack.Screen name={Routes.MY_PROPERTY} component={MyPropertyScreen} />
         <Stack.Screen name={Routes.NOTIFICATIONS} component={NotificationScreen} />
         <Stack.Screen name={Routes.CUSTOMER_SUPPORT} component={CustomerSupportScreen} />
+        <Stack.Screen name={Routes.PAYMENTS} component={PaymentScreen} />
     </Stack.Navigator>
 );
 

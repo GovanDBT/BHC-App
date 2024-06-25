@@ -63,7 +63,10 @@ function HomeScreen({ navigation }) {
                         <AppText size={20} style={styles.sectionHeader}>Dumela Thembi</AppText>
                         <MaterialCommunityIcons style={styles.headIcon} name="hand-wave-outline" size={22} color={colors.primary} />
                     </View>
-                    <AccountSummary />
+                    <AccountSummary 
+                        onPressProperty={() => navigation.navigate(Routes.MY_PROPERTY)} 
+                        onPressPayments={() => navigation.navigate(Routes.PAYMENTS)}
+                    />
                 </View>
                 {/** News Feed */}
                 <View style={styles.sectionContainer}>
