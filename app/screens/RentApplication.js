@@ -1,19 +1,27 @@
 import React, { useState } from "react";
 import Screen from "./Screen";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { Button, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import AppText from "../components/AppText";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import colors from "../config/colors";
 import AppRadioButton from "../components/AppRadioButton";
-
+import AppDatePicker from "../components/AppDatePicker";
 
 
 function RentApplication(props) {
-    const [selectedValue, setSelectedValue] = useState(null);
-    
-    const handleSelect = (value) => {
-        setSelectedValue(value);
-    }
+  const [selectedValue, setSelectedValue] = useState(null);
+
+  const handleSelect = (value) => {
+    setSelectedValue(value);
+  };
+
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+
   return (
     <Screen>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -70,33 +78,44 @@ function RentApplication(props) {
           />
 
           <View style={styles.radioButtons}>
-            <AppText style={styles.paragaphText}>Are you currently renting?</AppText>
+            <AppText style={styles.paragaphText}>
+              Are you currently renting?
+            </AppText>
 
             {/* Radio Buttons */}
             <AppRadioButton
-            label={"Yes"}
-            value={"Yes"}
-            selected={selectedValue === "Yes"}
-            onSelect={handleSelect}
+              label={"Yes"}
+              value={"Yes"}
+              selected={selectedValue === "Yes"}
+              onSelect={handleSelect}
             />
-            
+
             <AppRadioButton
-            label={"No"}
-            value={"No"}
-            selected={selectedValue === "No"}
-            onSelect={handleSelect}
+              label={"No"}
+              value={"No"}
+              selected={selectedValue === "No"}
+              onSelect={handleSelect}
             />
           </View>
 
-          <AppText style={styles.paragaphText}>If Yes, when is the lease expiring?</AppText>
+          <AppText style={styles.paragaphText}>
+            If Yes, when is the lease expiring?
+          </AppText>
 
           {/* Date Pickers */}
-          <View style={styles.date}></View>
+            <AppDatePicker
+            onChange={handleDateChange}
+            initialDate={selectedDate}
+            />
 
           <AppText style={styles.paragaphText}>Date Property Required?</AppText>
 
           {/* Date Pickers */}
-          <View style={styles.date}></View>
+          <AppDatePicker
+            onChange={handleDateChange}
+            initialDate={selectedDate}
+            />
+          
 
           <AppFormField
             autoCapitalize="none"
@@ -120,28 +139,26 @@ function RentApplication(props) {
 
           {/* Radio Buttons */}
           <View style={styles.radioButtons}>
-
             <AppRadioButton
-            label={"House"}
-            value={"House"}
-            selected={selectedValue === "House"}
-            onSelect={handleSelect}
-            />
-            
-            <AppRadioButton
-            label={"TownHouse"}
-            value={"TownHouse"}
-            selected={selectedValue === "TownHouse"}
-            onSelect={handleSelect}
-            />
-            
-            <AppRadioButton
-            label={"Flat"}
-            value={"Flat"}
-            selected={selectedValue === "Flat"}
-            onSelect={handleSelect}
+              label={"House"}
+              value={"House"}
+              selected={selectedValue === "House"}
+              onSelect={handleSelect}
             />
 
+            <AppRadioButton
+              label={"TownHouse"}
+              value={"TownHouse"}
+              selected={selectedValue === "TownHouse"}
+              onSelect={handleSelect}
+            />
+
+            <AppRadioButton
+              label={"Flat"}
+              value={"Flat"}
+              selected={selectedValue === "Flat"}
+              onSelect={handleSelect}
+            />
           </View>
 
           <AppFormField
@@ -192,16 +209,15 @@ function RentApplication(props) {
 }
 
 const styles = StyleSheet.create({
-    paragaphText: {
-        color: colors.lightTextColor,
+  paragaphText: {
+    color: colors.lightTextColor,
+  },
 
-    },
-
-    radioButtons: {
-        flexDirection: "row",
-        justifyContent:"space-around"
-
-    },
-})
+  radioButtons: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  
+});
 
 export default RentApplication;
