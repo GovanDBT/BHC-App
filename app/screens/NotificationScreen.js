@@ -15,7 +15,7 @@ const initialMessages = [
     {
         id: 2,
         title: 'Maintenance',
-        description: 'Routine Maintenance coming soon',
+        description: 'Routine Maintenance coming soon, make sure to prepare the necessary documents for your the maintenance call',
         date: '2 days ago'
     },
     {
