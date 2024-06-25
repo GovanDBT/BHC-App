@@ -26,13 +26,14 @@ import PropertyDetailsTag from './app/components/PropertyDetailsTag';
 import PaymentScreen from './app/screens/PaymentScreen';
 import NewsCard from './app/components/NewsCard';
 import RentApplication from './app/screens/RentApplication';
+import BuyApplication from './app/screens/BuyApplication';
 
 export default function App() {
   
   return (
     <NavigationContainer theme={NavigationTheme}>
         {/* <Screen> */}
-          <RentApplication />
+          <BuyApplication />
         {/* </Screen> */}
     </NavigationContainer>
   );
