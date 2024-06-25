@@ -3,7 +3,9 @@ import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
 
 import Screen from './Screen';
 import Card from '../components/Card';
+import Routes from '../navigation/Routes';
 import AppText from '../components/AppText';
+import TopHeader from '../components/TopHeader';
 
 const properties = [
     {
@@ -11,7 +13,7 @@ const properties = [
         title: 'Palapye Property',
         location: 'Palapye, Tsere Ward, Plot 4566',
         price: '3,500',
-        tag: 'rent',
+        tag: 'Rent',
         image: require('../assets/bhc-house01.jpeg')
     },
     {
@@ -19,7 +21,7 @@ const properties = [
         title: 'Serowe Property',
         location: 'Serowe, Kgama Ward, Plot 7778',
         price: '980,000',
-        tag: 'sale',
+        tag: 'Sale',
         image: require('../assets/bhc-house02.jpg')
     },
     {
@@ -27,7 +29,7 @@ const properties = [
         title: 'Tlokweng Property',
         location: 'Tlokweng, Ngane Ward, Plot 7662',
         price: '850,000',
-        tag: 'sale',
+        tag: 'Sale',
         image: require('../assets/bhc-house03.jpg')
     },
     {
@@ -35,17 +37,24 @@ const properties = [
         title: 'Village Town Property',
         location: 'Gaborone, Village Ward, 0126',
         price: '5,250',
-        tag: 'rent',
+        tag: 'Rent',
         image: require('../assets/bhc-house04.jpg')
     },
 ]
 
-function PropertiesScreen(props) {
+function PropertiesScreen({ navigation }) {
     const propertyToDisplay = properties.filter(property => property.id === 2);
 
     return (
         <Screen>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[0]}>
+                {/* Top Header */}
+                <TopHeader 
+                    title='my listings'
+                    onPress={() => navigation.navigate(Routes.MY_LISTINGS)} 
+                    notifications={() => navigation.navigate(Routes.NOTIFICATIONS)} 
+                    customer={() => navigation.navigate(Routes.CUSTOMER_SUPPORT)}
+                />
                 <View style={styles.container}>
                     <AppText size={20} style={styles.text}>Popular Properties</AppText>
                     <FlatList
@@ -58,6 +67,7 @@ function PropertiesScreen(props) {
                                 tagName={item.tag}
                                 title={item.title}
                                 location={item.location}
+                                onPress={() => navigation.navigate(Routes.PROPERTY_DETAILS, item)}
                             />
                         }
                         horizontal={true}
@@ -77,6 +87,7 @@ function PropertiesScreen(props) {
                                 tagName={item.tag}
                                 title={item.title}
                                 location={item.location}
+                                onPress={() => navigation.navigate(Routes.PROPERTY_DETAILS, item)}
                             />
                         }
                         horizontal={true}
@@ -96,9 +107,11 @@ function PropertiesScreen(props) {
                                 tagName={item.tag}
                                 title={item.title}
                                 location={item.location}
+                                onPress={() => navigation.navigate(Routes.PROPERTY_DETAILS, item)}
                             />
                         }
                         contentContainerStyle={styles.list}
+                        scrollEnabled={false}
                     />
                 </View>
             </ScrollView>

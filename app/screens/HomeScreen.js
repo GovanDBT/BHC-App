@@ -4,10 +4,12 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Screen from './Screen';
 import colors from '../config/colors';
-import HeaderSection from '../components/HeaderSection'
+import Routes from '../navigation/Routes';
 import AppText from '../components/AppText';
-import AccountSummary from '../components/AccountSummary';
 import NewsCard from '../components/NewsCard';
+import TopHeader from '../components/TopHeader';
+import HeaderSection from '../components/HeaderSection'
+import AccountSummary from '../components/AccountSummary';
 import InformationCenter from '../components/InformationCenter';
 
 const newsFeed = [
@@ -31,31 +33,44 @@ const information = [
     {
         id: 1,
         title: 'help me find a home',
-        description: 'Let us help you find the perfect home for you. Fill in the information we provided to get started'
+        description: 'Let us help you find the perfect home for you. Fill in the information we provided to get started',
+        targetScreen: Routes.HELP_ME_FIND_HOME,
     },
     {
         id: 2,
         title: 'Housing developments',
-        description: 'BHC is dedicated to creating innovative and sustainable housing developments that provide quality'
+        description: 'BHC is dedicated to creating innovative and sustainable housing developments that provide quality',
+        targetScreen: Routes.HOUSING_DEVELOPMENTS,
     },
     {
         id: 3,
         title: 'general inquiries',
-        description: 'For any questions or additional information about our services and projects, please contact BHC'
+        description: 'For any questions or additional information about our services and projects, please contact BHC',
+        targetScreen: Routes.GENERAL_INQUIRIES,
     }
 ];
 
-function HomeScreen(props) {
+function HomeScreen({ navigation }) {
     return (
         <Screen>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[0]}>
+                {/* Top Header */}
+                <TopHeader 
+                    title='my property'
+                    onPress={() => navigation.navigate(Routes.MY_PROPERTY)} 
+                    notifications={() => navigation.navigate(Routes.NOTIFICATIONS)} 
+                    customer={() => navigation.navigate(Routes.CUSTOMER_SUPPORT)}
+                />
                 {/** Account Summary */}
                 <View style={styles.sectionContainer}>
                     <View style={styles.head}>
                         <AppText size={20} style={styles.sectionHeader}>Dumela Thembi</AppText>
                         <MaterialCommunityIcons style={styles.headIcon} name="hand-wave-outline" size={22} color={colors.primary} />
                     </View>
-                    <AccountSummary />
+                    <AccountSummary 
+                        onPressProperty={() => navigation.navigate(Routes.MY_PROPERTY)} 
+                        onPressPayments={() => navigation.navigate(Routes.PAYMENTS)}
+                    />
                 </View>
                 {/** News Feed */}
                 <View style={styles.sectionContainer}>
@@ -77,7 +92,7 @@ function HomeScreen(props) {
                 </View>
                 {/** information center */}
                 <View style={styles.sectionContainer}>
-                    <HeaderSection title='Information Center' />
+                    <HeaderSection title='Information Center' onPress={() => navigation.navigate(Routes.INFORMATION_CENTER)} />
                     <FlatList 
                         data={information}
                         keyExtractor={info => info.id.toString()}
@@ -85,6 +100,7 @@ function HomeScreen(props) {
                             <InformationCenter 
                                 title={item.title}
                                 description={item.description}
+                                onPress={() => navigation.navigate(item.targetScreen)}
                             />
                         }
                         scrollEnabled={false}

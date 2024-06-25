@@ -1,19 +1,19 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import colors from '../config/colors';
 import AppText from './AppText';
 
-function AccountSummary({ upcoming, maintenance, arrears, propertyType, tenantType, lease }) {
+function AccountSummary({ upcoming, maintenance, arrears, propertyType, tenantType, lease, onPressPayments, onPressProperty }) {
     return (
         <View style={styles.homeCard}>
             <View style={styles.cardContent}>
                 <View style={styles.cardPaymentContent}>
-                    <View style={styles.headers}>
+                    <TouchableOpacity style={styles.headers} onPress={onPressPayments}>
                         <AppText style={styles.textHeader}>Payments</AppText>
                         <MaterialCommunityIcons name="arrow-top-right" size={22} color={colors.white} />
-                    </View>
+                    </TouchableOpacity>
                     <View style={styles.paymentType}>
                         <AppText style={styles.contentHeader}>Upcoming</AppText>
                         {upcoming && <AppText style={styles.contentText}>{upcoming}</AppText> ? {upcoming} : <AppText style={styles.none}>None</AppText> }
@@ -28,10 +28,10 @@ function AccountSummary({ upcoming, maintenance, arrears, propertyType, tenantTy
                     </View>
                 </View>
                 <View style={styles.cardPropertyContent}>
-                    <View style={styles.headers}>
+                    <TouchableOpacity style={styles.headers} onPress={onPressProperty}>
                         <AppText style={styles.textHeader}>My Property</AppText>
                         <MaterialCommunityIcons name="arrow-top-right" size={22} color={colors.white} />
-                    </View>
+                    </TouchableOpacity>
                     <View style={styles.paymentType}>
                         <AppText style={styles.contentHeader}>Property Type</AppText>
                         {propertyType && <AppText style={styles.contentText}>{propertyType}</AppText> ? {propertyType} : <AppText style={styles.none}>None</AppText> }
@@ -47,10 +47,10 @@ function AccountSummary({ upcoming, maintenance, arrears, propertyType, tenantTy
                 </View>
             </View>
             <View style={styles.cardPaymentHistory}>
-                <View style={[styles.headers, {borderBottomWidth: 0, paddingBottom: 0}]}>
-                        <AppText style={styles.textHeader}>Last Payment</AppText>
-                        <MaterialCommunityIcons name="arrow-top-right" size={22} color={colors.white} />
-                    </View>
+                <TouchableOpacity style={[styles.headers, {borderBottomWidth: 0, paddingBottom: 0}]} onPress={onPressPayments}>
+                    <AppText style={styles.textHeader}>Last Payment</AppText>
+                    <MaterialCommunityIcons name="arrow-top-right" size={22} color={colors.white} />
+                </TouchableOpacity>
             </View>
         </View>
     );
