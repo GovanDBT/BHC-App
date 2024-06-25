@@ -4,10 +4,12 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Screen from './Screen';
 import colors from '../config/colors';
-import HeaderSection from '../components/HeaderSection'
+import Routes from '../navigation/Routes';
 import AppText from '../components/AppText';
-import AccountSummary from '../components/AccountSummary';
 import NewsCard from '../components/NewsCard';
+import TopHeader from '../components/TopHeader';
+import HeaderSection from '../components/HeaderSection'
+import AccountSummary from '../components/AccountSummary';
 import InformationCenter from '../components/InformationCenter';
 
 const newsFeed = [
@@ -45,10 +47,12 @@ const information = [
     }
 ];
 
-function HomeScreen(props) {
+function HomeScreen({ navigation }) {
     return (
         <Screen>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[0]}>
+                {/* Top Header */}
+                <TopHeader myProperty={() => navigation.navigate(Routes.MY_PROPERTY)} notifications={() => navigation.navigate(Routes.NOTIFICATIONS)} />
                 {/** Account Summary */}
                 <View style={styles.sectionContainer}>
                     <View style={styles.head}>

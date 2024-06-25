@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Screen from './Screen';
@@ -65,34 +65,38 @@ const menuSettings = [
 function AccountScreen(props) {
     return (
         <Screen>
-            <View style={styles.container}>
-                <ListItem 
-                    title='Thembi Dibotelo'
-                    subtitle='govan.dibotelo@gmail.com'
-                    image={require('../assets/thembi.jpg')}
-                />
-            </View>
-            <View style={styles.container}>
-                <FlatList 
-                    data={menuItems}
-                    keyExtractor={menuItem => menuItems.title}
-                    ItemSeparatorComponent={ListItemSeparator}
-                    renderItem={({ item }) =>
-                        <ListItem title={item.title} icon={item.icon.name} />
-                    }
-                />
-            </View>
-            <View style={styles.container}>
-                <FlatList 
-                    data={menuSettings}
-                    keyExtractor={menuSetting => menuSetting.title}
-                    ItemSeparatorComponent={ListItemSeparator}
-                    renderItem={({ item }) =>
-                        <ListItem title={item.title} icon={item.icon.name} />
-                    }
-                />
-            </View>
-            <AppText size={12} style={styles.copyright}>Copyright {<MaterialCommunityIcons name="copyright" size={12} color={colors.lightTextColor} />} LabRats 2024. All Rights Reserved</AppText>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.container}>
+                    <ListItem 
+                        title='Thembi Dibotelo'
+                        subtitle='govan.dibotelo@gmail.com'
+                        image={require('../assets/thembi.jpg')}
+                    />
+                </View>
+                <View style={styles.container}>
+                    <FlatList 
+                        data={menuItems}
+                        keyExtractor={menuItem => menuItems.title}
+                        ItemSeparatorComponent={ListItemSeparator}
+                        renderItem={({ item }) =>
+                            <ListItem title={item.title} icon={item.icon.name} />
+                        }
+                        scrollEnabled={false}
+                    />
+                </View>
+                <View style={styles.container}>
+                    <FlatList 
+                        data={menuSettings}
+                        keyExtractor={menuSetting => menuSetting.title}
+                        ItemSeparatorComponent={ListItemSeparator}
+                        renderItem={({ item }) =>
+                            <ListItem title={item.title} icon={item.icon.name} />
+                        }
+                        scrollEnabled={false}
+                    />
+                </View>
+                <AppText size={12} style={styles.copyright}>Copyright {<MaterialCommunityIcons name="copyright" size={12} color={colors.lightTextColor} />} LabRats 2024. All Rights Reserved</AppText>
+            </ScrollView>
         </Screen>
     );
 }

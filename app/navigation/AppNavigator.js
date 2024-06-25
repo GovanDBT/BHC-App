@@ -8,6 +8,7 @@ import PropertiesScreen from '../screens/PropertiesScreen';
 import MaintenanceScreen from '../screens/MaintenanceScreen';
 import AccountScreen from '../screens/AccountScreen';
 import FeedNavigator from './FeedNavigation';
+import HomeNavigator from './HomeNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,7 +26,7 @@ const AppNavigator = () => (
     >
         <Tab.Screen 
             name="Home" 
-            component={HomeScreen} 
+            component={HomeNavigator}
             options={{
                 headerShown: false,
                 tabBarIcon: ({ color, size }) =>
@@ -61,6 +62,7 @@ const AppNavigator = () => (
             name="Account" 
             component={AccountScreen} 
             options={{
+                headerShown: false,
                 tabBarIcon: ({ color, size }) =>
                     <AntDesign name="user" size={size} color={color} />
             }}
