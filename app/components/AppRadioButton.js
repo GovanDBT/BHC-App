@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 
 import Icon  from "react-native-vector-icons/MaterialIcons";
+import colors from "../config/colors";
 
 function AppRadioButton({ label, value, selected, onSelect }) {
   return (
@@ -10,7 +11,7 @@ function AppRadioButton({ label, value, selected, onSelect }) {
         {selected ? (
           <Icon name="radio-button-checked" size={24} color={"#007AFF"} />
         ) : (
-          <Icon name="radio-button-unchecked" size={24} color={"#007AFF"} />
+          <Icon name="radio-button-unchecked" size={24} color={colors.lightTextColor} />
         )}
       </View>
         <Text style={styles.label}>{label}</Text>
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
+    color: colors.lightTextColor
   },
 });
 

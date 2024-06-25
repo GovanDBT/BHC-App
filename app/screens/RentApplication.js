@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Screen from "./Screen";
 import { ScrollView, StyleSheet, View } from "react-native";
 import AppText from "../components/AppText";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import colors from "../config/colors";
+import AppRadioButton from "../components/AppRadioButton";
+
+
 
 function RentApplication(props) {
+    const [selectedValue, setSelectedValue] = useState(null);
+    
+    const handleSelect = (value) => {
+        setSelectedValue(value);
+    }
   return (
     <Screen>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -65,8 +73,19 @@ function RentApplication(props) {
             <AppText style={styles.paragaphText}>Are you currently renting?</AppText>
 
             {/* Radio Buttons */}
-            <AppText style={styles.paragaphText}>Yes</AppText>
-            <AppText style={styles.paragaphText}>No</AppText>
+            <AppRadioButton
+            label={"Yes"}
+            value={"Yes"}
+            selected={selectedValue === "Yes"}
+            onSelect={handleSelect}
+            />
+            
+            <AppRadioButton
+            label={"No"}
+            value={"No"}
+            selected={selectedValue === "No"}
+            onSelect={handleSelect}
+            />
           </View>
 
           <AppText style={styles.paragaphText}>If Yes, when is the lease expiring?</AppText>
@@ -101,9 +120,28 @@ function RentApplication(props) {
 
           {/* Radio Buttons */}
           <View style={styles.radioButtons}>
-            <AppText style={styles.paragaphText}>House</AppText>
-            <AppText style={styles.paragaphText}>TownHouse</AppText>
-            <AppText style={styles.paragaphText}>Flat</AppText>
+
+            <AppRadioButton
+            label={"House"}
+            value={"House"}
+            selected={selectedValue === "House"}
+            onSelect={handleSelect}
+            />
+            
+            <AppRadioButton
+            label={"TownHouse"}
+            value={"TownHouse"}
+            selected={selectedValue === "TownHouse"}
+            onSelect={handleSelect}
+            />
+            
+            <AppRadioButton
+            label={"Flat"}
+            value={"Flat"}
+            selected={selectedValue === "Flat"}
+            onSelect={handleSelect}
+            />
+
           </View>
 
           <AppFormField
