@@ -33,9 +33,7 @@ export default function App() {
   
   return (
     <NavigationContainer theme={NavigationTheme}>
-        {/* <Screen> */}
-          <BuyApplication />
-        {/* </Screen> */}
+      <AppNavigator />
     </NavigationContainer>
   );
 }

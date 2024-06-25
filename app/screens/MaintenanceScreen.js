@@ -11,11 +11,14 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Screen from "./Screen";
-import AppText from "../components/AppText";
 import colors from "../config/colors";
-import { AppForm, AppFormField, SubmitButton } from "../components/forms";
-import AppTextInput from "../components/AppTextInput";
+import Routes from "../navigation/Routes";
+import AppText from "../components/AppText";
+import TopHeader from "../components/TopHeader";
 import AppPicker from "../components/AppPicker";
+import AppTextInput from "../components/AppTextInput";
+import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+import HeaderSection from "../components/HeaderSection";
 
 // NOTE:
 // const [isEnabled, setIsEnabled] = useState(false);
@@ -27,22 +30,19 @@ const reportProblems = [
   { label: "Appliances", value: 3 },
 ];
 
-function MaintenanceScreen(props) {
+function MaintenanceScreen({ navigation }) {
   return (
     <Screen>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[0]}>
+        {/* Top Header */}
+        <TopHeader 
+            title='Maintenance'
+            onPress={() => navigation.navigate(Routes.MY_MAINTENANCE)} 
+            notifications={() => navigation.navigate(Routes.NOTIFICATIONS)} 
+            customer={() => navigation.navigate(Routes.CUSTOMER_SUPPORT)}
+        />
         {/* Your Reports Row */}
-        <View style={styles.reportsHistory}>
-          <AppText style={styles.reportsText}>Your Reports</AppText>
-          <View style={styles.historyContainer}>
-            <AppText style={styles.historyText}>History</AppText>
-            <MaterialCommunityIcons
-              name="arrow-right-thin"
-              size={28}
-              color={colors.primary}
-            />
-          </View>
-        </View>
+        <HeaderSection title='Report History' />
 
         {/* Emergency container */}
         <View style={styles.emergencyContainer}>
@@ -173,6 +173,8 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 14,
     color: colors.lightTextColor,
+    textAlign: 'center',
+    marginBottom: 10,
   },
   termsConditions: {
     color: colors.primary,
