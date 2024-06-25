@@ -1,23 +1,25 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 import AppText from './AppText';
 import colors from '../config/colors';
 import Tag from './Tag';
 
-function Card({ image, price, title, location, tagName }) {
+function Card({ image, price, title, location, tagName, onPress }) {
     return (
-        <View style={styles.card}>
-            <Image source={image} style={styles.image} />
-            <View style={styles.detailsContainer}>
-                <View style={styles.header}>
-                    <AppText style={styles.price}>P{price}</AppText>
-                    <Tag title={tagName}/>
+        <TouchableOpacity onPress={onPress}>
+            <View style={styles.card}>
+                <Image source={image} style={styles.image} />
+                <View style={styles.detailsContainer}>
+                    <View style={styles.header}>
+                        <AppText style={styles.price}>P{price}</AppText>
+                        <Tag title={tagName}/>
+                    </View>
+                    <AppText style={styles.title}>{title}</AppText>
+                    <AppText style={styles.location}>{location}</AppText>
                 </View>
-                <AppText style={styles.title}>{title}</AppText>
-                <AppText style={styles.location}>{location}</AppText>
             </View>
-        </View>
+        </TouchableOpacity>
     );
 }
 

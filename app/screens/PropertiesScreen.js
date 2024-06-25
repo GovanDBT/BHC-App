@@ -40,7 +40,7 @@ const properties = [
     },
 ]
 
-function PropertiesScreen(props) {
+function PropertiesScreen({ navigation }) {
     const propertyToDisplay = properties.filter(property => property.id === 2);
 
     return (
@@ -58,6 +58,7 @@ function PropertiesScreen(props) {
                                 tagName={item.tag}
                                 title={item.title}
                                 location={item.location}
+                                onPress={() => navigation.navigate("PropertyDetails", item)}
                             />
                         }
                         horizontal={true}
@@ -77,6 +78,7 @@ function PropertiesScreen(props) {
                                 tagName={item.tag}
                                 title={item.title}
                                 location={item.location}
+                                onPress={() => navigation.navigate("PropertyDetails", item)}
                             />
                         }
                         horizontal={true}
@@ -96,9 +98,11 @@ function PropertiesScreen(props) {
                                 tagName={item.tag}
                                 title={item.title}
                                 location={item.location}
+                                onPress={() => navigation.navigate("PropertyDetails", item)}
                             />
                         }
                         contentContainerStyle={styles.list}
+                        scrollEnabled={false}
                     />
                 </View>
             </ScrollView>

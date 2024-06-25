@@ -2,11 +2,12 @@ import React from 'react';
 import { Image, View, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+import Screen from './Screen';
+import Tag from '../components/Tag';
 import colors from '../config/colors';
 import AppText from '../components/AppText';
-import Tag from '../components/Tag';
-import PropertyDetailsTag from '../components/PropertyDetailsTag';
 import AppButton from '../components/AppButton';
+import PropertyDetailsTag from '../components/PropertyDetailsTag';
 
 const images = [
     require('../assets/house01-sitting-room.jpg'),
@@ -17,18 +18,20 @@ const images = [
 
 const { width } = Dimensions.get('window');
 
-function PropertyDetailsScreen(props) {
+function PropertyDetailsScreen({ route }) {
+    const Property = route.params;
+
     return (
-        <View>
+        <Screen>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <Image style={styles.image} source={require('../assets/bhc-house01.jpeg')} />
+                <Image style={styles.image} source={Property.image} />
                 <View style={styles.detailsContainer}>
                     <View style={styles.header}>
-                        <AppText style={styles.price}>P4,500</AppText>
-                        <Tag title="rent"/>
+                        <AppText style={styles.price}>{Property.price}</AppText>
+                        <Tag title={Property.tag}/>
                     </View>
-                    <AppText style={styles.title}>BHC Palapye Property</AppText>
-                    <AppText style={styles.location}>Palapye, Tsere Ward, 4566</AppText>
+                    <AppText style={styles.title}>{Property.title}</AppText>
+                    <AppText style={styles.location}>{Property.location}</AppText>
                 </View>
                 
                 <View style={styles.tags}>
@@ -82,7 +85,7 @@ function PropertyDetailsScreen(props) {
                     </View>
                 </View>
             </ScrollView>
-        </View>
+        </Screen>
     );
 }
 

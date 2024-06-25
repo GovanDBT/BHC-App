@@ -7,6 +7,7 @@ import PaymentScreen from '../screens/PaymentScreen';
 import PropertiesScreen from '../screens/PropertiesScreen';
 import MaintenanceScreen from '../screens/MaintenanceScreen';
 import AccountScreen from '../screens/AccountScreen';
+import FeedNavigator from './FeedNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,6 +27,7 @@ const AppNavigator = () => (
             name="Home" 
             component={HomeScreen} 
             options={{
+                headerShown: false,
                 tabBarIcon: ({ color, size }) =>
                     <AntDesign name="home" size={size} color={color} />
             }} 
@@ -40,8 +42,9 @@ const AppNavigator = () => (
         />
         <Tab.Screen 
             name="Properties" 
-            component={PropertiesScreen} 
+            component={FeedNavigator} 
             options={{
+                headerShown: false,
                 tabBarIcon: ({ color, size }) =>
                     <AntDesign name="pluscircleo" size={size} color={color} />
             }}
