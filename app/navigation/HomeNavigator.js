@@ -4,9 +4,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Routes from './Routes';
 import FAQ from '../screens/FAQ';
 import HomeScreen from '../screens/HomeScreen';
-import PaymentScreen from '../screens/PaymentScreen';
+import MyPaymentsScreen from '../screens/MyPaymentsScreen';
 import MyPropertyScreen from '../screens/MyPropertyScreen';
-import GeneralInquiries from '../screens/generalInquiries';
+import GeneralInquiries from '../screens/GeneralInquiries';
 import HousingDevScreen from '../screens/HousingDevScreen';
 import BHCProductsScreen from '../screens/BHCProductsScreen';
 import EligibilityScreen from '../screens/EligibilityScreen';
@@ -24,7 +24,7 @@ const HomeNavigator = () => (
         <Stack.Screen name={Routes.MY_PROPERTY} component={MyPropertyScreen} />
         <Stack.Screen name={Routes.NOTIFICATIONS} component={NotificationScreen} />
         <Stack.Screen name={Routes.CUSTOMER_SUPPORT} component={CustomerSupportScreen} />
-        <Stack.Screen name={Routes.PAYMENTS} component={PaymentScreen} />
+        <Stack.Screen name={Routes.MY_PAYMENTS} component={MyPaymentsScreen} />
         <Stack.Screen name={Routes.INFORMATION_CENTER} component={InformationCenterScreen} />
         <Stack.Screen name={Routes.HELP_ME_FIND_HOME} component={HelpFindHomeScreen} />
         <Stack.Screen name={Routes.GENERAL_INQUIRIES} component={GeneralInquiries} />

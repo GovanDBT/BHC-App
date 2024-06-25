@@ -2,13 +2,15 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
+import HomeNavigator from './HomeNavigator';
+import FeedNavigator from './FeedNavigation';
 import HomeScreen from '../screens/HomeScreen';
+import PaymentNavigator from './PaymentNavigator';
 import PaymentScreen from '../screens/PaymentScreen';
+import AccountScreen from '../screens/AccountScreen';
 import PropertiesScreen from '../screens/PropertiesScreen';
 import MaintenanceScreen from '../screens/MaintenanceScreen';
-import AccountScreen from '../screens/AccountScreen';
-import FeedNavigator from './FeedNavigation';
-import HomeNavigator from './HomeNavigator';
+import Routes from './Routes';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,8 +37,9 @@ const AppNavigator = () => (
         />
         <Tab.Screen 
             name="Payments" 
-            component={PaymentScreen} 
+            component={PaymentNavigator} 
             options={{
+                headerShown: false,
                 tabBarIcon: ({ color, size }) =>
                     <AntDesign name="wallet" size={size} color={color} />
             }} 

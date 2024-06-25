@@ -1,11 +1,24 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 
-function PaymentScreen(props) {
+import Screen from './Screen';
+import Routes from '../navigation/Routes';
+import TopHeader from '../components/TopHeader';
+
+function PaymentScreen({ navigation }) {
     return (
-        
-            <Text>Payments Screen</Text>
-        
+        <Screen>
+            <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[0]}>
+                {/* Top Header */}
+                <TopHeader 
+                    title='my Payments'
+                    onPress={() => navigation.navigate(Routes.MY_PAYMENTS)} 
+                    notifications={() => navigation.navigate(Routes.NOTIFICATIONS)} 
+                    customer={() => navigation.navigate(Routes.CUSTOMER_SUPPORT)}
+                />
+                <Text>Payments Screen</Text>
+            </ScrollView>
+        </Screen>
     );
 }
 
