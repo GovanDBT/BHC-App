@@ -5,6 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Screen from './Screen';
 import Tag from '../components/Tag';
 import colors from '../config/colors';
+import Routes from '../navigation/Routes';
 import AppText from '../components/AppText';
 import AppButton from '../components/AppButton';
 import PropertyDetailsTag from '../components/PropertyDetailsTag';
@@ -18,9 +19,10 @@ const images = [
 
 const { width } = Dimensions.get('window');
 
-function PropertyDetailsScreen({ route }) {
+function PropertyDetailsScreen({ route, navigation }) {
     const Property = route.params;
-
+    const press = Property.tag === 'Rent' ? () => navigation.navigate(Routes.RENT_APPLICATION) : () => navigation.navigate(Routes.BUY_APPLICATION);
+    
     return (
         <Screen>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -40,7 +42,7 @@ function PropertyDetailsScreen({ route }) {
                     <PropertyDetailsTag title="50x100" iconName="pencil-ruler" />
                 </View>
                 <View style={styles.sectionContainer}>
-                    <AppButton title='Apply For Property' />
+                    <AppButton title='Apply For Property' onPress={press} />
                 </View>
                 <View style={styles.sectionContainer}>
                     <View style={styles.managementContainer}>

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import Screen from "./Screen";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+
+import Screen from "./Screen";
+import colors from "../config/colors";
+import Routes from "../navigation/Routes";
 import AppText from "../components/AppText";
 import AppPicker from "../components/AppPicker";
-import colors from "../config/colors";
 import AppDatePicker from "../components/AppDatePicker";
+import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+import PropertyDetailsScreen from "./PropertyDetailsScreen";
 
 const age = [
   { label: "18-21", value: 1 },
@@ -38,12 +41,15 @@ const bedrooms = [
   { label: "4", value: 4 },
 ];
 
-function BuyApplication(props) {
+function BuyApplication() {
+
+  const Property = PropertyDetailsScreen.route;
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
   return (
     <Screen>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -57,6 +63,7 @@ function BuyApplication(props) {
         </AppText>
 
         <AppForm>
+
           <AppFormField
             autoCapitalize="none"
             autoCorrect={false}

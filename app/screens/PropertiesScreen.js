@@ -13,7 +13,7 @@ const properties = [
         title: 'Palapye Property',
         location: 'Palapye, Tsere Ward, Plot 4566',
         price: '3,500',
-        tag: 'rent',
+        tag: 'Rent',
         image: require('../assets/bhc-house01.jpeg')
     },
     {
@@ -21,7 +21,7 @@ const properties = [
         title: 'Serowe Property',
         location: 'Serowe, Kgama Ward, Plot 7778',
         price: '980,000',
-        tag: 'sale',
+        tag: 'Sale',
         image: require('../assets/bhc-house02.jpg')
     },
     {
@@ -29,7 +29,7 @@ const properties = [
         title: 'Tlokweng Property',
         location: 'Tlokweng, Ngane Ward, Plot 7662',
         price: '850,000',
-        tag: 'sale',
+        tag: 'Sale',
         image: require('../assets/bhc-house03.jpg')
     },
     {
@@ -37,7 +37,7 @@ const properties = [
         title: 'Village Town Property',
         location: 'Gaborone, Village Ward, 0126',
         price: '5,250',
-        tag: 'rent',
+        tag: 'Rent',
         image: require('../assets/bhc-house04.jpg')
     },
 ]
