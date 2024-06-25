@@ -33,17 +33,20 @@ const information = [
     {
         id: 1,
         title: 'help me find a home',
-        description: 'Let us help you find the perfect home for you. Fill in the information we provided to get started'
+        description: 'Let us help you find the perfect home for you. Fill in the information we provided to get started',
+        targetScreen: Routes.HELP_ME_FIND_HOME,
     },
     {
         id: 2,
         title: 'Housing developments',
-        description: 'BHC is dedicated to creating innovative and sustainable housing developments that provide quality'
+        description: 'BHC is dedicated to creating innovative and sustainable housing developments that provide quality',
+        targetScreen: Routes.HOUSING_DEVELOPMENTS,
     },
     {
         id: 3,
         title: 'general inquiries',
-        description: 'For any questions or additional information about our services and projects, please contact BHC'
+        description: 'For any questions or additional information about our services and projects, please contact BHC',
+        targetScreen: Routes.GENERAL_INQUIRIES,
     }
 ];
 
@@ -88,7 +91,7 @@ function HomeScreen({ navigation }) {
                 </View>
                 {/** information center */}
                 <View style={styles.sectionContainer}>
-                    <HeaderSection title='Information Center' />
+                    <HeaderSection title='Information Center' onPress={() => navigation.navigate(Routes.INFORMATION_CENTER)} />
                     <FlatList 
                         data={information}
                         keyExtractor={info => info.id.toString()}
@@ -96,6 +99,7 @@ function HomeScreen({ navigation }) {
                             <InformationCenter 
                                 title={item.title}
                                 description={item.description}
+                                onPress={() => navigation.navigate(item.targetScreen)}
                             />
                         }
                         scrollEnabled={false}
