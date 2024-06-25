@@ -4,40 +4,46 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Screen from './Screen';
 import colors from '../config/colors';
+import Routes from '../navigation/Routes';
+import AppText from '../components/AppText';
 import ListItem from '../components/ListItem';
 import ListItemSeparator from '../components/ListItemSeparator';
-import AppText from '../components/AppText';
 
 const menuItems = [
     {
         title: 'My Listings',
         icon: {
             name: 'format-list-bulleted'
-        }
+        },
+        targetScreen: Routes.MY_LISTINGS
     },
     {
         title: 'About Us',
         icon: {
             name: 'information-outline'
-        }
+        },
+        targetScreen: Routes.ABOUT_US
     },
     {
         title: 'Information Center',
         icon: {
             name: 'folder-information-outline'
-        }
+        },
+        targetScreen: Routes.INFORMATION_CENTER
     },
     {
         title: 'Feedback',
         icon: {
             name: 'chat-processing-outline'
-        }
+        },
+        targetScreen: Routes.ACCOUNT
     },
     {
         title: 'Follow Us',
         icon: {
             name: 'thumb-up-outline'
-        }
+        },
+        targetScreen: Routes.ACCOUNT
     },
 ]
 
@@ -46,23 +52,26 @@ const menuSettings = [
         title: 'Settings',
         icon: {
             name: 'cog-outline'
-        }
+        },
+        targetScreen: Routes.ACCOUNT
     },
     {
         title: 'Support Center',
         icon: {
             name: 'account-tie-voice-outline'
-        }
+        },
+        targetScreen: Routes.CUSTOMER_SUPPORT
     },
     {
         title: 'Logout',
         icon: {
             name: 'logout'
-        }
+        },
+        targetScreen: Routes.ACCOUNT
     }
 ]
 
-function AccountScreen(props) {
+function AccountScreen({ navigation }) {
     return (
         <Screen>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -76,10 +85,14 @@ function AccountScreen(props) {
                 <View style={styles.container}>
                     <FlatList 
                         data={menuItems}
-                        keyExtractor={menuItem => menuItems.title}
+                        keyExtractor={menuItem => menuItem.title}
                         ItemSeparatorComponent={ListItemSeparator}
                         renderItem={({ item }) =>
-                            <ListItem title={item.title} icon={item.icon.name} />
+                            <ListItem 
+                                title={item.title} 
+                                icon={item.icon.name} 
+                                onPress={() => navigation.navigate(item.targetScreen)}
+                            />
                         }
                         scrollEnabled={false}
                     />
@@ -90,7 +103,11 @@ function AccountScreen(props) {
                         keyExtractor={menuSetting => menuSetting.title}
                         ItemSeparatorComponent={ListItemSeparator}
                         renderItem={({ item }) =>
-                            <ListItem title={item.title} icon={item.icon.name} />
+                            <ListItem 
+                                title={item.title} 
+                                icon={item.icon.name} 
+                                onPress={() => navigation.navigate(item.targetScreen)}
+                            />
                         }
                         scrollEnabled={false}
                     />

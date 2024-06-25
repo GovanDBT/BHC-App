@@ -1,4 +1,6 @@
 export default Object.freeze({
+    ABOUT_US: 'About Us',
+    ACCOUNT: 'Accounts',
     APPLICATION_PROCEDURE: 'Application Procedure',
     CUSTOMER_SUPPORT: 'Customer Support',
     ELIGIBILITY: 'Eligibility Criteria',
