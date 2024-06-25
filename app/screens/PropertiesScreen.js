@@ -3,7 +3,9 @@ import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
 
 import Screen from './Screen';
 import Card from '../components/Card';
+import Routes from '../navigation/Routes';
 import AppText from '../components/AppText';
+import TopHeader from '../components/TopHeader';
 
 const properties = [
     {
@@ -45,7 +47,14 @@ function PropertiesScreen({ navigation }) {
 
     return (
         <Screen>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[0]}>
+                {/* Top Header */}
+                <TopHeader 
+                    title='my listings'
+                    onPress={() => navigation.navigate(Routes.MY_LISTINGS)} 
+                    notifications={() => navigation.navigate(Routes.NOTIFICATIONS)} 
+                    customer={() => navigation.navigate(Routes.CUSTOMER_SUPPORT)}
+                />
                 <View style={styles.container}>
                     <AppText size={20} style={styles.text}>Popular Properties</AppText>
                     <FlatList
@@ -58,7 +67,7 @@ function PropertiesScreen({ navigation }) {
                                 tagName={item.tag}
                                 title={item.title}
                                 location={item.location}
-                                onPress={() => navigation.navigate("PropertyDetails", item)}
+                                onPress={() => navigation.navigate(Routes.PROPERTY_DETAILS, item)}
                             />
                         }
                         horizontal={true}
@@ -78,7 +87,7 @@ function PropertiesScreen({ navigation }) {
                                 tagName={item.tag}
                                 title={item.title}
                                 location={item.location}
-                                onPress={() => navigation.navigate("PropertyDetails", item)}
+                                onPress={() => navigation.navigate(Routes.PROPERTY_DETAILS, item)}
                             />
                         }
                         horizontal={true}
@@ -98,7 +107,7 @@ function PropertiesScreen({ navigation }) {
                                 tagName={item.tag}
                                 title={item.title}
                                 location={item.location}
-                                onPress={() => navigation.navigate("PropertyDetails", item)}
+                                onPress={() => navigation.navigate(Routes.PROPERTY_DETAILS, item)}
                             />
                         }
                         contentContainerStyle={styles.list}

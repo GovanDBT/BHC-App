@@ -5,11 +5,11 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AppText from './AppText';
 import colors from '../config/colors';
 
-function TopHeader({ myProperty, notifications, customer }) {
+function TopHeader({ title, onPress, notifications, customer }) {
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.propertyContainer} onPress={myProperty}>
-                <AppText style={styles.text}>My Property</AppText>
+            <TouchableOpacity style={styles.propertyContainer} onPress={onPress}>
+                <AppText style={[styles.text, {textTransform: 'capitalize'}]}>{title}</AppText>
                 <MaterialCommunityIcons name="arrow-down-drop-circle-outline" size={20} color={colors.textColor} />
             </TouchableOpacity>
             <View style={styles.iconsContainer}>

@@ -56,7 +56,8 @@ function HomeScreen({ navigation }) {
             <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[0]}>
                 {/* Top Header */}
                 <TopHeader 
-                    myProperty={() => navigation.navigate(Routes.MY_PROPERTY)} 
+                    title='my property'
+                    onPress={() => navigation.navigate(Routes.MY_PROPERTY)} 
                     notifications={() => navigation.navigate(Routes.NOTIFICATIONS)} 
                     customer={() => navigation.navigate(Routes.CUSTOMER_SUPPORT)}
                 />
