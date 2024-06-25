@@ -51,9 +51,10 @@ function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
             keyExtractor={(item) => item.value.toString()}
             renderItem={({ item }) => (
               <PickerItem
+                item={item}
                 label={item.label}
                 onPress={() => {
-                  setModalVisible(false);
+                  setModalVisible(false); 
                   onSelectItem(item);
                 }}
               />
