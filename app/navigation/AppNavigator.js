@@ -4,13 +4,9 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 
 import HomeNavigator from './HomeNavigator';
 import FeedNavigator from './FeedNavigation';
-import HomeScreen from '../screens/HomeScreen';
 import PaymentNavigator from './PaymentNavigator';
-import PaymentScreen from '../screens/PaymentScreen';
 import AccountScreen from '../screens/AccountScreen';
-import PropertiesScreen from '../screens/PropertiesScreen';
-import MaintenanceScreen from '../screens/MaintenanceScreen';
-import Routes from './Routes';
+import MaintenanceNavigator from './MaintenanceNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -55,8 +51,9 @@ const AppNavigator = () => (
         />
         <Tab.Screen 
             name="Maintenance" 
-            component={MaintenanceScreen} 
+            component={MaintenanceNavigator} 
             options={{
+                headerShown: false,
                 tabBarIcon: ({ color, size }) =>
                     <AntDesign name="tool" size={size} color={color} />
             }}
