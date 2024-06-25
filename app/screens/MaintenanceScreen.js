@@ -25,10 +25,24 @@ import HeaderSection from "../components/HeaderSection";
 // const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
 const reportProblems = [
-  { label: "Appliances", value: 1 },
-  { label: "Appliances", value: 2 },
-  { label: "Appliances", value: 3 },
+  { label: "Damaged Roof", value: 1 },
+  { label: "Damaged Tiles", value: 2 },
+  { label: "Missing Dust bin", value: 3 },
+  { label: "Broken Window", value: 4 },
+  { label: "Damaged Gate", value: 5 },
+  { label: "Light Shade Missing", value: 6 },
+  { label: "Burnt Socket", value: 7 },
+  { label: "Blockage Sewer", value: 8 },
+  { label: "Vandalized Property", value: 9 },
+  { label: "Door lock missing", value: 10 },
+  { label: "Damaged Curtain Rails", value: 11 },
 ];
+
+const category = [
+  {label: 'Normal', value: 1},
+  {label: 'Urgent', value: 2},
+  {label: 'Emergency - 24hrs', value: 3}
+]
 
 function MaintenanceScreen({ navigation }) {
   return (
@@ -47,17 +61,10 @@ function MaintenanceScreen({ navigation }) {
         {/* Emergency container */}
         <View style={styles.emergencyContainer}>
           <View>
-            <AppText style={styles.emergencyText}>Emergency</AppText>
             <AppText style={styles.emergencyText}>
-              Will be attended to within 30min
+              Call BHC Call Center to report a fault on Tel: 315 9902 or 1167 (Landline)
             </AppText>
           </View>
-          <Switch
-            trackColor={{ false: colors.white, true: colors.white }}
-            thumbColor={colors.primary}
-            // onValueChange={toggleSwitch}
-            // value={isEnabled}
-          />
         </View>
 
         <AppText style={styles.text}>
@@ -73,7 +80,7 @@ function MaintenanceScreen({ navigation }) {
             autoCorrect={false}
             keyboardType="default"
             name="firstname"
-            placeholder="Firstname"
+            placeholder="FirstName"
             textContentType="name"
           />
           <AppFormField
@@ -87,27 +94,40 @@ function MaintenanceScreen({ navigation }) {
           <AppFormField
             autoCapitalize="none"
             autoCorrect={false}
-            keyboardType="default"
+            keyboardType="numeric"
             name="plotNo"
             placeholder="Plot Number"
             textContentType="none"
+            width={200}
           />
           <AppFormField
             autoCapitalize="none"
             autoCorrect={false}
-            keyboardType="default"
+            keyboardType="numeric"
             name="telephone"
             placeholder="Telephone"
             textContentType="telephoneNumber"
+            width={220}
           />
           <AppFormField
             autoCapitalize="none"
             autoCorrect={false}
-            keyboardType="default"
+            keyboardType="numeric"
             name="mobileNo"
             placeholder="Mobile No."
             textContentType="none"
+            width={220}
           />
+
+          <AppText style={styles.problemType}>Categorty:</AppText>
+
+          <View style={styles.picker}>
+            <AppPicker
+              items={category}
+              placeholder={"Select Category"}
+            />
+          </View>
+
           <AppText style={styles.problemType}>Type of Problem:</AppText>
 
           <View style={styles.picker}>
@@ -158,8 +178,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   emergencyContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
     borderWidth: 1,
     borderColor: colors.inputBorderColor,
     borderRadius: 15,
@@ -168,7 +186,9 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   emergencyText: {
-    color: colors.primary,
+    color: colors.primary, 
+    textAlign: 'center',
+    fontWeight: 'bold'
   },
   text: {
     fontSize: 14,
