@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AppText from './AppText';
 import colors from '../config/colors';
 
-function TopHeader({ myProperty, notifications }) {
+function TopHeader({ myProperty, notifications, customer }) {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.propertyContainer} onPress={myProperty}>
@@ -13,7 +13,7 @@ function TopHeader({ myProperty, notifications }) {
                 <MaterialCommunityIcons name="arrow-down-drop-circle-outline" size={20} color={colors.textColor} />
             </TouchableOpacity>
             <View style={styles.iconsContainer}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={customer}>
                     <MaterialCommunityIcons name="account-tie-voice-outline" size={30} color={colors.textColor} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={notifications}>
