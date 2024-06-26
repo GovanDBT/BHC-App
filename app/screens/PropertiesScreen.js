@@ -12,43 +12,43 @@ import colors from '../config/colors';
 import useApi from '../hooks/useApi';
 
 
-// const properties = [
-//     {
-//         id: 1,
-//         title: 'Palapye Property',
-//         location: 'Palapye, Tsere Ward, Plot 4566',
-//         price: '3,500',
-//         tag: 'Rent',
-//         image: require('../assets/bhc-house01.jpeg')
-//     },
-//     {
-//         id: 2,
-//         title: 'Serowe Property',
-//         location: 'Serowe, Kgama Ward, Plot 7778',
-//         price: '980,000',
-//         tag: 'Sale',
-//         image: require('../assets/bhc-house02.jpg')
-//     },
-//     {
-//         id: 3,
-//         title: 'Tlokweng Property',
-//         location: 'Tlokweng, Ngane Ward, Plot 7662',
-//         price: '850,000',
-//         tag: 'Sale',
-//         image: require('../assets/bhc-house03.jpg')
-//     },
-//     {
-//         id: 4,
-//         title: 'Village Town Property',
-//         location: 'Gaborone, Village Ward, 0126',
-//         price: '5,250',
-//         tag: 'Rent',
-//         image: require('../assets/bhc-house04.jpg')
-//     },
-// ]
+const properties = [
+    {
+        id: 1,
+        title: 'Palapye Property',
+        location: 'Palapye, Tsere Ward, Plot 4566',
+        price: '3,500',
+        tag: 'Rent',
+        image: require('../assets/bhc-house01.jpeg')
+    },
+    {
+        id: 2,
+        title: 'Serowe Property',
+        location: 'Serowe, Kgama Ward, Plot 7778',
+        price: '980,000',
+        tag: 'Sale',
+        image: require('../assets/bhc-house02.jpg')
+    },
+    {
+        id: 3,
+        title: 'Tlokweng Property',
+        location: 'Tlokweng, Ngane Ward, Plot 7662',
+        price: '850,000',
+        tag: 'Sale',
+        image: require('../assets/bhc-house03.jpg')
+    },
+    {
+        id: 4,
+        title: 'Village Town Property',
+        location: 'Gaborone, Village Ward, 0126',
+        price: '5,250',
+        tag: 'Rent',
+        image: require('../assets/bhc-house04.jpg')
+    },
+]
 
 function PropertiesScreen({ navigation }) {
-    // const propertyToDisplay = properties.filter(property => property.id === 2);
+    const propertyToDisplay = properties.filter(property => property.id === 2);
 
     const getListingsApi = useApi(listingsApi.getListings);
 
@@ -72,13 +72,13 @@ function PropertiesScreen({ navigation }) {
                 </>}
                 <View style={styles.container}>
                     <AppText size={20} style={styles.text}>Popular Properties</AppText>
-                    <ActivityIndicator animating={getListingsApi.loading} size='small'/>
+                    {/* <ActivityIndicator animating={getListingsApi.loading} size='small'/> */}
                     <FlatList
-                        data={getListingsApi.data}
-                        keyExtractor={(listing) => listing.id.toString()}
+                        data={properties}
+                        keyExtractor={property => property.id.toString()}
                         renderItem={({ item }) =>
                             <Card 
-                                image={item.images[0].url}
+                                image={item.image}
                                 price={item.price}
                                 tagName={item.tag}
                                 title={item.title}
@@ -91,7 +91,7 @@ function PropertiesScreen({ navigation }) {
                         contentContainerStyle={styles.list}
                     />
                 </View>
-                {/* <View style={styles.container}>
+                <View style={styles.container}>
                     <AppText size={20} style={styles.text}>Recently Added</AppText>
                     <FlatList
                         data={properties}
@@ -129,7 +129,7 @@ function PropertiesScreen({ navigation }) {
                         contentContainerStyle={styles.list}
                         scrollEnabled={false}
                     />
-                </View> */}
+                </View>
             </ScrollView>
         </Screen>
     );

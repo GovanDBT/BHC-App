@@ -67,7 +67,7 @@ function HomeScreen({ navigation }) {
                 {/** Account Summary */}
                 <View style={styles.sectionContainer}>
                     <View style={styles.head}>
-                        <AppText size={20} style={styles.sectionHeader}>Dumela {user.name}</AppText>
+                        <AppText size={20} style={styles.sectionHeader}>Dumela SkillRanker</AppText>
                         <MaterialCommunityIcons style={styles.headIcon} name="hand-wave-outline" size={22} color={colors.primary} />
                     </View>
                     <AccountSummary 

@@ -73,8 +73,8 @@ function AccountScreen({ navigation }) {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
                     <ListItem 
-                        title={user.name}
-                        subtitle={user.email}
+                        title='SkillRanker User'
+                        subtitle='info@skillranker.co.bw'
                         image={require('../assets/thembi.jpg')}
                     />
                 </View>
