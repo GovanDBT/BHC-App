@@ -18,7 +18,7 @@ function ImageInput({ imageUri, onChangeImage }) {
 
   const requestPermission = async () => {
     try {
-      const { status } = await ImagePicker.requestCameraPermissionsAsync;
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (status !== "granted") {
         alert("You need to enable permission to access the library.");
       }
@@ -26,7 +26,6 @@ function ImageInput({ imageUri, onChangeImage }) {
       console.log("Error requesting camera roll permission:", error);
     }
   };
-  
 
   const handlePress = () => {
     if (!imageUri) selectImage();
