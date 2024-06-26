@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Image, ScrollView, ImageBackground } from "react-native";
 import * as Yup from "yup";
 
+
 import colors from "../config/colors";
 import AppText from "../components/AppText";
-import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+import { ErrorMessage, AppForm, AppFormField, SubmitButton } from "../components/forms";
+import authApi from '../api/auth';
+import useAuth from "../auth/useAuth";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -12,6 +15,16 @@ const validationSchema = Yup.object().shape({
 });
 
 function LoginScreen({ navigation }) {
+  const { logIn } = useAuth();
+  const [loginFailed, setLoginFailed] = useState(false);
+
+  const handleSubmit = async ({ email, password }) => {
+    const result = await authApi.login(email, password);
+    if (!result.ok) return setLoginFailed(true);
+    setLoginFailed(false);
+    logIn(result.data);
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer} >
       <View style={styles.container}>
@@ -24,9 +37,10 @@ function LoginScreen({ navigation }) {
 
           <AppForm
             initialValues={{ email: "", password: "" }}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={handleSubmit}
             validationSchema={validationSchema}
           >
+          <ErrorMessage error="Invalid email and/or password" visible={loginFailed} />
             <AppFormField
               autoCapitalize="none"
               autoCorrect={false}

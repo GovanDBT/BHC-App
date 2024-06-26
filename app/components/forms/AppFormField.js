@@ -1,4 +1,5 @@
 import React from "react";
+import { View, StyleSheet } from "react-native";
 import { useFormikContext } from "formik";
 
 import AppTextInput from "../AppTextInput";
@@ -11,6 +12,7 @@ function AppFormField({ name, width, ...otherProps }) {
     <>
       <AppTextInput
         onBlur={() => setFieldTouched(name)}
+        style={styles.input}
         onChangeText={handleChange(name)}
         width={width}
         {...otherProps}
@@ -19,5 +21,11 @@ function AppFormField({ name, width, ...otherProps }) {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  input: {
+    width: '100%'
+  }
+})
 
 export default AppFormField;

@@ -1,11 +1,16 @@
-import React from 'react';
-import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, FlatList, ScrollView, StyleSheet, View } from 'react-native';
 
 import Screen from './Screen';
 import Card from '../components/Card';
+import listingsApi from '../api/listings';
 import Routes from '../navigation/Routes';
 import AppText from '../components/AppText';
 import TopHeader from '../components/TopHeader';
+import AppButton from '../components/AppButton';
+import colors from '../config/colors';
+import useApi from '../hooks/useApi';
+
 
 const properties = [
     {
@@ -45,6 +50,12 @@ const properties = [
 function PropertiesScreen({ navigation }) {
     const propertyToDisplay = properties.filter(property => property.id === 2);
 
+    const getListingsApi = useApi(listingsApi.getListings);
+
+    useEffect(() => {
+        getListingsApi.request();
+    }, []);
+
     return (
         <Screen>
             <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[0]}>
@@ -55,8 +66,13 @@ function PropertiesScreen({ navigation }) {
                     notifications={() => navigation.navigate(Routes.NOTIFICATIONS)} 
                     customer={() => navigation.navigate(Routes.CUSTOMER_SUPPORT)}
                 />
+                {getListingsApi.error && <>
+                        <AppText style={styles.error}>Could not retrieve the properties listings</AppText>
+                        <AppButton title='Retry' onPress={loadListings} />
+                </>}
                 <View style={styles.container}>
                     <AppText size={20} style={styles.text}>Popular Properties</AppText>
+                    {/* <ActivityIndicator animating={getListingsApi.loading} size='small'/> */}
                     <FlatList
                         data={properties}
                         keyExtractor={property => property.id.toString()}
@@ -122,6 +138,12 @@ function PropertiesScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         marginBottom: 15
+    },
+    error: {
+        fontSize: 16,
+        textAlign: 'center',
+        color: colors.primary,
+        fontWeight: 'bold'
     },
     list: {
         paddingVertical: 20
