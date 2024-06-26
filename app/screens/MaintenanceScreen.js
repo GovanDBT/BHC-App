@@ -173,6 +173,7 @@ function MaintenanceScreen({ navigation }) {
           />
 
           {/* TODO: Add camera functionality */}
+          <AppText style={styles.problemType}>Add pictures</AppText>
           <FormImagePicker name="images" />
 
           <SubmitButton
