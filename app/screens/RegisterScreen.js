@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, ImageBackground, ScrollView, StyleSheet, View} from "react-native";
+import { Image, ImageBackground, ScrollView, StyleSheet, View, Alert } from "react-native";
+import axios from "axios";
 import * as Yup from "yup";
 
 import colors from "../config/colors";
@@ -10,12 +11,31 @@ const validationSchema = Yup.object().shape({
   username: Yup.string().required().label("Username"),
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(8).label("Password"),
-  confirmPassword: Yup.string().required().min(8).label("Password"),
+  confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required().min(8).label("Confirm Password"),
 });
 
 function RegisterScreen({ navigation }) {
+  const handleSubmit = async (values) => {
+    try {
+      const response = await axios.post("http://localhost:4000/api/user/register", {
+        name: values.username,
+        email: values.email,
+        password: values.password,
+      });
+
+      if (response.data.success) {
+        navigation.navigate("Login");
+      } else {
+        Alert.alert("Registration Failed", response.data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      Alert.alert("An error occurred", "Please try again.");
+    }
+  };
+
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer} >
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <ImageBackground source={require("../assets/background.png")} style={styles.backgroundImage}>
           <Image source={require("../assets/bhclogo.png")} style={styles.logo} />
@@ -26,7 +46,7 @@ function RegisterScreen({ navigation }) {
 
           <AppForm
             initialValues={{ username: "", email: "", password: "", confirmPassword: "" }}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={handleSubmit}
             validationSchema={validationSchema}
           >
             <AppFormField
@@ -56,15 +76,12 @@ function RegisterScreen({ navigation }) {
             <AppFormField
               autoCapitalize="none"
               autoCorrect={false}
-              name="confirmpassword"
+              name="confirmPassword"
               placeholder="Confirm Password"
               secureTextEntry
               textContentType="password"
             />
-            <SubmitButton
-              title="Register"
-              onPress={() => navigation.navigate("Login")}
-            />
+            <SubmitButton title="Register" />
           </AppForm>
 
           <View style={styles.text}>
