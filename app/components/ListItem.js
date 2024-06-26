@@ -5,10 +5,10 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AppText from './AppText';
 import colors from '../config/colors';
 
-function ListItem({ title, subtitle, image, onPress, icon, iconSize = 27 }) {
+function ListItem({ title, subtitle, image, onPress, icon, style, iconSize = 27 }) {
     return (
         <TouchableHighlight underlayColor={colors.inputBorderColor} onPress={onPress}>
-            <View style={styles.container}>
+            <View style={[styles.container, style]}>
                 {<MaterialCommunityIcons name={icon} size={iconSize} color={colors.textColor} />}
                 {image && <Image style={styles.image} source={image} />}
                 <View style={styles.detailsContainer}>

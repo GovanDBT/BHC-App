@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -8,6 +8,7 @@ import Routes from '../navigation/Routes';
 import AppText from '../components/AppText';
 import ListItem from '../components/ListItem';
 import ListItemSeparator from '../components/ListItemSeparator';
+import AuthContext from '../auth/context';
 
 const menuItems = [
     {
@@ -62,23 +63,18 @@ const menuSettings = [
         },
         targetScreen: Routes.CUSTOMER_SUPPORT
     },
-    {
-        title: 'Logout',
-        icon: {
-            name: 'logout'
-        },
-        targetScreen: Routes.ACCOUNT
-    }
 ]
 
 function AccountScreen({ navigation }) {
+    const { user, setUser } = useContext(AuthContext);
+
     return (
         <Screen>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
                     <ListItem 
-                        title='Thembi Dibotelo'
-                        subtitle='govan.dibotelo@gmail.com'
+                        title={user.name}
+                        subtitle={user.email}
                         image={require('../assets/thembi.jpg')}
                     />
                 </View>
@@ -111,6 +107,13 @@ function AccountScreen({ navigation }) {
                         }
                         scrollEnabled={false}
                     />
+                    <ListItem 
+                        title='Log Out'
+                        icon='logout'
+                        iconSize={30}
+                        style={styles.logout}
+                        onPress={() => setUser(null)}
+                    />
                 </View>
                 <AppText size={12} style={styles.copyright}>Copyright {<MaterialCommunityIcons name="copyright" size={12} color={colors.lightTextColor} />} LabRats 2024. All Rights Reserved</AppText>
             </ScrollView>
@@ -129,6 +132,10 @@ const styles = StyleSheet.create({
     copyright: {
         color: colors.lightTextColor,
         textAlign: 'center'
+    },
+    logout: {
+        borderTopWidth: 1,
+        borderTopColor: colors.inputBorderColor
     }
 })
 

@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
 
@@ -28,12 +29,17 @@ import NewsCard from './app/components/NewsCard';
 import RentApplication from './app/screens/RentApplication';
 import BuyApplication from './app/screens/BuyApplication';
 import MyPropertyScreen from './app/screens/MyPropertyScreen';
+import AuthContext from './app/auth/context';
 
 export default function App() {
+
+  const [user, setUser] = useState();
   
   return (
-    <NavigationContainer theme={NavigationTheme}>
-      <AppNavigator />
-    </NavigationContainer>
+    <AuthContext.Provider value={{ user, setUser }}>
+      <NavigationContainer theme={NavigationTheme}>
+        {user ? <AppNavigator /> : <AuthNavigator />}
+      </NavigationContainer>
+    </AuthContext.Provider>
   );
 }
