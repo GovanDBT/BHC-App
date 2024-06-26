@@ -9,6 +9,7 @@ import AppText from '../components/AppText';
 import ListItem from '../components/ListItem';
 import ListItemSeparator from '../components/ListItemSeparator';
 import AuthContext from '../auth/context';
+import authStorage from '../auth/storage';
 
 const menuItems = [
     {
@@ -68,6 +69,11 @@ const menuSettings = [
 function AccountScreen({ navigation }) {
     const { user, setUser } = useContext(AuthContext);
 
+    const handleLogOut = () => {
+        setUser(null);
+        authStorage.removeToken();
+    }
+
     return (
         <Screen>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -112,7 +118,7 @@ function AccountScreen({ navigation }) {
                         icon='logout'
                         iconSize={30}
                         style={styles.logout}
-                        onPress={() => setUser(null)}
+                        onPress={handleLogOut}
                     />
                 </View>
                 <AppText size={12} style={styles.copyright}>Copyright {<MaterialCommunityIcons name="copyright" size={12} color={colors.lightTextColor} />} LabRats 2024. All Rights Reserved</AppText>
