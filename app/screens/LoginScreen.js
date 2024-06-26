@@ -1,6 +1,7 @@
 import React from "react";
-import { View, StyleSheet, Image, ScrollView, ImageBackground } from "react-native";
+import { View, StyleSheet, Image, ScrollView, ImageBackground, Alert } from "react-native";
 import * as Yup from "yup";
+import axios from "axios"; // Import axios
 
 import colors from "../config/colors";
 import AppText from "../components/AppText";
@@ -12,8 +13,31 @@ const validationSchema = Yup.object().shape({
 });
 
 function LoginScreen({ navigation }) {
+
+  const handleSubmit = async (values) => {
+    try {
+      const response = await axios.post("http://localhost:4000/api/user/login", {
+        email: values.email,
+        password: values.password,
+      });
+
+      if (response.data.success) {
+        // Save the token (you can use AsyncStorage or any other method)
+        console.log('Token:', response.data.token); // Add this line to debug
+
+        // Navigate to the Home screen
+        navigation.navigate("Home");
+      } else {
+        Alert.alert("Login Failed", response.data.message);
+      }
+    } catch (error) {
+      console.error('Error:', error); // Add this line to debug
+      Alert.alert("An error occurred", "Please try again.");
+    }
+  };
+
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer} >
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <ImageBackground source={require("../assets/background.png")} style={styles.backgroundImage}>
           <Image source={require("../assets/bhclogo.png")} style={styles.logo} />
@@ -24,7 +48,7 @@ function LoginScreen({ navigation }) {
 
           <AppForm
             initialValues={{ email: "", password: "" }}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={handleSubmit} // Use the handleSubmit function
             validationSchema={validationSchema}
           >
             <AppFormField
@@ -47,12 +71,12 @@ function LoginScreen({ navigation }) {
               <AppText style={styles.rememberMe}>Remember me</AppText>
               <AppText style={styles.forgotPassword} onPress={() => navigation.navigate("ForgotPassword")}>Forgot password?</AppText>
             </View>
-            <SubmitButton title="Login" onPress={() => navigation.navigate("Home")}/>
+            <SubmitButton title="Login" />
           </AppForm>
 
           <View style={styles.text}>
             <AppText>Don't have an account?</AppText>
-            <AppText style={styles.createAccount} onPress={() => navigation.navigate("Register")} >Create account</AppText>
+            <AppText style={styles.createAccount} onPress={() => navigation.navigate("Register")}>Create account</AppText>
           </View>
         </View>
       </View>
@@ -139,5 +163,6 @@ const styles = StyleSheet.create({
     // fontSize: 14,
   }
 });
+
 
 export default LoginScreen;

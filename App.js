@@ -26,7 +26,7 @@ export default function App() {
   
   return (
     <NavigationContainer theme={NavigationTheme}>
-        <RegisterScreen/>
+        <LoginScreen/>
     </NavigationContainer>
   );
 }
