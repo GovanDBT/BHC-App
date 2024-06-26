@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -8,8 +8,7 @@ import Routes from '../navigation/Routes';
 import AppText from '../components/AppText';
 import ListItem from '../components/ListItem';
 import ListItemSeparator from '../components/ListItemSeparator';
-import AuthContext from '../auth/context';
-import authStorage from '../auth/storage';
+import useAuth from '../auth/useAuth';
 
 const menuItems = [
     {
@@ -67,12 +66,7 @@ const menuSettings = [
 ]
 
 function AccountScreen({ navigation }) {
-    const { user, setUser } = useContext(AuthContext);
-
-    const handleLogOut = () => {
-        setUser(null);
-        authStorage.removeToken();
-    }
+    const { user, logOut } = useAuth();
 
     return (
         <Screen>
@@ -118,7 +112,7 @@ function AccountScreen({ navigation }) {
                         icon='logout'
                         iconSize={30}
                         style={styles.logout}
-                        onPress={handleLogOut}
+                        onPress={() => logOut()}
                     />
                 </View>
                 <AppText size={12} style={styles.copyright}>Copyright {<MaterialCommunityIcons name="copyright" size={12} color={colors.lightTextColor} />} LabRats 2024. All Rights Reserved</AppText>
