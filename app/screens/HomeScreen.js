@@ -11,6 +11,7 @@ import TopHeader from '../components/TopHeader';
 import HeaderSection from '../components/HeaderSection'
 import AccountSummary from '../components/AccountSummary';
 import InformationCenter from '../components/InformationCenter';
+import useAuth from '../auth/useAuth';
 
 const newsFeed = [
     {
@@ -51,6 +52,8 @@ const information = [
 ];
 
 function HomeScreen({ navigation }) {
+    const { user } = useAuth();
+
     return (
         <Screen>
             <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[0]}>
@@ -64,7 +67,7 @@ function HomeScreen({ navigation }) {
                 {/** Account Summary */}
                 <View style={styles.sectionContainer}>
                     <View style={styles.head}>
-                        <AppText size={20} style={styles.sectionHeader}>Dumela Thembi</AppText>
+                        <AppText size={20} style={styles.sectionHeader}>Dumela {user.name}</AppText>
                         <MaterialCommunityIcons style={styles.headIcon} name="hand-wave-outline" size={22} color={colors.primary} />
                     </View>
                     <AccountSummary 

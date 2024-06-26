@@ -1,21 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, ImageBackground, ScrollView, StyleSheet, View} from "react-native";
 import * as Yup from "yup";
 
 import colors from "../config/colors";
 import AppText from "../components/AppText";
-import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+import { ErrorMessage, AppForm, AppFormField, SubmitButton } from "../components/forms";
+import usersApi from '../api/users';
+import useAuth from "../auth/useAuth";
+import authApi from '../api/auth';
 
 const validationSchema = Yup.object().shape({
-  username: Yup.string().required().label("Username"),
+  name: Yup.string().required().label("Name"),
   email: Yup.string().required().email().label("Email"),
-  password: Yup.string().required().min(8).label("Password"),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Confirm Password is required')
+  password: Yup.string().required().min(4).label("Password")
 });
 
 function RegisterScreen({ navigation }) {
+  const auth = useAuth();
+  const [error, setError] = useState();
+
+  const handleSubmit = async (userInfo) => {
+    const result = await usersApi.register(userInfo);
+
+    if (!result.ok) {
+      if (result.data) setError(result.data.error);
+      else {
+        setError("An unexpected error occurred");
+        console.log(result);
+      }
+      return;
+    }
+
+    const { data: authToken } = await authApi.login(
+      userInfo.email,
+      userInfo.password
+    );
+    auth.logIn(authToken);
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer} >
       <View style={styles.container}>
@@ -27,15 +49,16 @@ function RegisterScreen({ navigation }) {
           <AppText style={styles.welcomeText}>Fill in the registration data</AppText>
 
           <AppForm
-            initialValues={{ username: "", email: "", password: "", confirmPassword: "" }}
-            onSubmit={(values) => console.log(values)}
+            initialValues={{ name: "", email: "", password: "" }}
+            onSubmit={handleSubmit}
             validationSchema={validationSchema}
           >
+            <ErrorMessage error={error} visible={error} />
             <AppFormField
               autoCapitalize="none"
               autoCorrect={false}
               keyboardType="default"
-              name="username"
+              name="name"
               placeholder="Username"
               textContentType="username"
             />
@@ -55,17 +78,8 @@ function RegisterScreen({ navigation }) {
               secureTextEntry
               textContentType="password"
             />
-            <AppFormField
-              autoCapitalize="none"
-              autoCorrect={false}
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              secureTextEntry
-              textContentType="password"
-            />
             <SubmitButton
               title="Register"
-              onPress={() => navigation.navigate("Login")}
             />
           </AppForm>
 
