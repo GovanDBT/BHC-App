@@ -8,6 +8,8 @@ import {
   TextInput,
 } from "react-native";
 
+import * as Yup from "yup";
+
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Screen from "./Screen";
@@ -19,6 +21,11 @@ import AppPicker from "../components/AppPicker";
 import AppTextInput from "../components/AppTextInput";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import HeaderSection from "../components/HeaderSection";
+import FormImagePicker from "../components/forms/FormImagePicker";
+
+const validationSchema = Yup.object().shape({
+  images: Yup.array().min(1, "Please select at least one image."),
+});
 
 // NOTE:
 // const [isEnabled, setIsEnabled] = useState(false);
@@ -81,7 +88,14 @@ function MaintenanceScreen({ navigation }) {
         </AppText>
 
         {/* report fault forms */}
-        <AppForm>
+        <AppForm
+          initialValues={{
+            images: [],
+          }}
+          onSubmit={(values) => console.log("Submitted")}
+          validationSchema={validationSchema}
+        
+        >
           <AppFormField
             autoCapitalize="none"
             autoCorrect={false}
@@ -159,7 +173,8 @@ function MaintenanceScreen({ navigation }) {
           />
 
           {/* TODO: Add camera functionality */}
-          <View style={styles.camera}></View>
+          <AppText style={styles.problemType}>Add pictures</AppText>
+          <FormImagePicker name="images" />
 
           <SubmitButton
             title={"Submit"}
