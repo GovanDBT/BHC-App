@@ -9,7 +9,7 @@ function Card({ image, price, title, location, tagName, onPress }) {
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={styles.card}>
-                <Image source={image} style={styles.image} />
+                <Image source={{ uri: image }} style={styles.image} />
                 <View style={styles.detailsContainer}>
                     <View style={styles.header}>
                         <AppText style={styles.price}>P{price}</AppText>
